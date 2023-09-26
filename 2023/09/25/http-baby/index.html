@@ -1,173 +1,276 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Http_baby | Wide1k</title><meta name="author" content="wide1k"><meta name="copyright" content="wide1k"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HTTP_baby开题后看题，发现题目给出php代码如下 1234567891011121314151617181920212223242526272829303132&lt;?php    highlight_file(__FILE__);    error_reporting(0);    if ( $_GET[&amp;#x27;start&amp;#x27;] &#x3D;&#x3D;&#x3D; &quot;op&quot; &amp;am">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Http_baby">
-<meta property="og:url" content="https://onewide.github.com/2023/09/25/http-baby/index.html">
-<meta property="og:site_name" content="Wide1k">
-<meta property="og:description" content="HTTP_baby开题后看题，发现题目给出php代码如下 1234567891011121314151617181920212223242526272829303132&lt;?php    highlight_file(__FILE__);    error_reporting(0);    if ( $_GET[&amp;#x27;start&amp;#x27;] &#x3D;&#x3D;&#x3D; &quot;op&quot; &amp;am">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
-<meta property="article:published_time" content="2023-09-25T15:30:38.000Z">
-<meta property="article:modified_time" content="2023-09-25T16:04:20.326Z">
-<meta property="article:author" content="wide1k">
-<meta property="article:tag" content="博客,wide">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://onewide.github.com/2023/09/25/http-baby/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  }
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Http_baby',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-09-26 00:04:20'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>Http_baby | Wide1k</title>
+        <meta name="author" content="wide1k" />
+        <meta name="description" content="你是我唯一想要的了解" />
+        <meta name="keywords" content="博客,wide" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>WIDE1K</span>
+        </a>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Wide1k"><span class="site-name">Wide1k</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Http_baby</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-25T15:30:38.000Z" title="发表于 2023-09-25 23:30:38">2023-09-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-25T16:04:20.326Z" title="更新于 2023-09-26 00:04:20">2023-09-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Http_baby"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="HTTP-baby"><a href="#HTTP-baby" class="headerlink" title="HTTP_baby"></a>HTTP_baby</h1><p>开题后看题，发现题目给出php代码如下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( <span class="variable">$_GET</span>[<span class="string">&#x27;start&#x27;</span>] === <span class="string">&quot;op&quot;</span> &amp;&amp; <span class="variable">$_GET</span>[<span class="string">&#x27;op&#x27;</span>][<span class="string">&#x27;run&#x27;</span>] === <span class="string">&quot;good~~&quot;</span> ) &#123;</span><br><span class="line">        <span class="variable">$flag1</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;You don&#x27;t understand the GET param&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( <span class="variable">$_POST</span>[<span class="string">&#x27;start&#x27;</span>] === <span class="string">&quot;op&quot;</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&#x27;op&#x27;</span>][<span class="string">&#x27;run&#x27;</span>] === <span class="string">&quot;good~~&quot;</span> ) &#123;</span><br><span class="line">        <span class="variable">$flag2</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;You don&#x27;t understand the POST param&quot;</span>);    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;role&quot;</span>] === <span class="string">&quot;op&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$flag3</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;You are not op&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&quot;HTTP_X_OP_X&quot;</span>] === <span class="string">&quot;good~~&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$flag4</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;You don&#x27;t understand HTTP HEADER&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$flag1</span> &amp;&amp; <span class="variable">$flag2</span> &amp;&amp; <span class="variable">$flag3</span> &amp;&amp; <span class="variable">$flag4</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;/flag&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;WIDE1K</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
 
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>Http_baby</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/25
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="HTTP-baby"><a href="#HTTP-baby" class="headerlink" title="HTTP_baby"></a>HTTP_baby</h1><p>开题后看题，发现题目给出php代码如下</p>
+<pre><code class="php">&lt;?php
+    highlight_file(__FILE__);
+    error_reporting(0);
+
+    if ( $_GET[&#39;start&#39;] === &quot;op&quot; &amp;&amp; $_GET[&#39;op&#39;][&#39;run&#39;] === &quot;good~~&quot; ) &#123;
+        $flag1 = true;
+    &#125; else &#123;
+        die(&quot;You don&#39;t understand the GET param&quot;);
+    &#125;
+
+    if ( $_POST[&#39;start&#39;] === &quot;op&quot; &amp;&amp; $_POST[&#39;op&#39;][&#39;run&#39;] === &quot;good~~&quot; ) &#123;
+        $flag2 = true;
+    &#125; else &#123;
+        die(&quot;You don&#39;t understand the POST param&quot;);    
+    &#125;
+
+    if ($_COOKIE[&quot;role&quot;] === &quot;op&quot;) &#123;
+        $flag3 = true;
+    &#125; else &#123;
+        die(&quot;You are not op&quot;);
+    &#125;
+
+    if ($_SERVER[&quot;HTTP_X_OP_X&quot;] === &quot;good~~&quot;) &#123;
+        $flag4 = true;
+    &#125; else &#123;
+        die(&quot;You don&#39;t understand HTTP HEADER&quot;);
+    &#125;
+
+    if ($flag1 &amp;&amp; $flag2 &amp;&amp; $flag3 &amp;&amp; $flag4) &#123;
+        echo file_get_contents(&quot;/flag&quot;);
+    &#125;
+</code></pre>
 <h2 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h2><p>可以发现本题源码中有一个flag文件，只有当flag1234都为真时才能输出flag，则我们需要满足上面http各项要求，那我们就需要Python访问容器，提交相应的get,post,cookie,header,以下是相应的Python脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义目标URL</span></span><br><span class="line">url = <span class="string">&#x27;http://localhost:51764/&#x27;</span>  <span class="comment"># 将URL替换为您的实际目标URL</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建GET参数、POST参数、Cookie和自定义HTTP头</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;start&#x27;</span>: <span class="string">&#x27;op&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;op[run]&#x27;</span>: <span class="string">&#x27;good~~&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;start&#x27;</span>: <span class="string">&#x27;op&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;op[run]&#x27;</span>: <span class="string">&#x27;good~~&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;</span><br><span class="line">    <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;op&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;X-OP-X&#x27;</span>: <span class="string">&#x27;good~~&#x27;</span>  <span class="comment"># 自定义HTTP头</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送GET请求</span></span><br><span class="line">response = requests.post(url, params=params, data=data, cookies=cookies, headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印响应内容</span></span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="python">import requests
+
+# 定义目标URL
+url = &#39;http://localhost:51764/&#39;  # 将URL替换为您的实际目标URL
+
+# 构建GET参数、POST参数、Cookie和自定义HTTP头
+params = &#123;
+    &#39;start&#39;: &#39;op&#39;,
+    &#39;op[run]&#39;: &#39;good~~&#39;
+&#125;
+data = &#123;
+    &#39;start&#39;: &#39;op&#39;,
+    &#39;op[run]&#39;: &#39;good~~&#39;
+&#125;
+cookies = &#123;
+    &#39;role&#39;: &#39;op&#39;
+&#125;
+headers = &#123;
+    &#39;X-OP-X&#39;: &#39;good~~&#39;  # 自定义HTTP头
+&#125;
+
+# 发送GET请求
+response = requests.post(url, params=params, data=data, cookies=cookies, headers=headers)
+
+# 打印响应内容
+print(response.text)
+</code></pre>
 <blockquote>
 <p>requests.post() 方法用于发送 HTTP POST 请求，并接受多个参数，以便进行请求的定制。以下是 requests.post() 方法可接受的一些主要参数：<br>url (必需)：要发送 POST 请求的目标 URL。<br>data：要发送的数据，通常是一个字典或字节流。这个参数用于将表单数据发送到服务器。<br>json：要发送的 JSON 数据，通常用于发送 JSON 格式的数据。如果指定了 json 参数，data 参数将被忽略。<br>headers：自定义请求头的字典，可以包含额外的请求头信息。<br>files：用于上传文件的字典，允许你上传文件到服务器。<br>auth：用于 HTTP 基本身份验证的元组 (username, password)。<br>timeout：设置请求的超时时间，可以是一个浮点数，单位为秒。<br>proxies：用于设置代理服务器的字典，以便请求通过代理服务器发送。<br>verify：设置是否验证 SSL 证书，默认为 True。可以设置为 False 来禁用 SSL 证书验证。<br>cert：用于指定客户端证书的路径，通常是一个元组 (cert_file, key_file)。<br>stream：设置是否延迟下载响应内容。如果设置为 True，则只有在访问响应内容时才会下载，适用于大文件下载。<br>allow_redirects：设置是否允许自动重定向，默认为 True。<br>params：一个字典，包含 URL 查询参数。<br>cookies：要发送的 Cookie 数据，可以是一个字典。</p>
 </blockquote>
 <p>参考文章来自<a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-requests.html">菜鸟教程</a><br><strong>值得一提的是：</strong> Header中一般不允许下划线，下划线与-替换，也就是说Header头中的内容与我们发送的不是一一对应的，将其更改为X-OP-X。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://OneWide.github.com">wide1k</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://onewide.github.com/2023/09/25/http-baby/">https://onewide.github.com/2023/09/25/http-baby/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://OneWide.github.com" target="_blank">Wide1k</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/09/24/baby%20xor/" title="CTF博客之xor"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CTF博客之xor</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wide1k</div><div class="author-info__description">Wide's blog ,welcome to read!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-baby"><span class="toc-number">1.</span> <span class="toc-text">HTTP_baby</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">分析题目</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/25/http-baby/" title="Http_baby">Http_baby</a><time datetime="2023-09-25T15:30:38.000Z" title="发表于 2023-09-25 23:30:38">2023-09-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/24/baby%20xor/" title="CTF博客之xor">CTF博客之xor</a><time datetime="2023-09-24T06:49:18.000Z" title="发表于 2023-09-24 14:49:18">2023-09-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/24/myblog/" title="我的第一个博客">我的第一个博客</a><time datetime="2023-09-23T16:38:41.270Z" title="发表于 2023-09-24 00:38:41">2023-09-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-09-23T16:00:28.232Z" title="发表于 2023-09-24 00:00:28">2023-09-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By wide1k</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 Wide1k
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;wide1k
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>
