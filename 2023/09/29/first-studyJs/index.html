@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>前端第一次任务 | Wide1k</title>
+        <meta name="author" content="wide1k" />
+        <meta name="description" content="你是我唯一想要的了解" />
+        <meta name="keywords" content="博客,wide" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>WIDE1K</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;WIDE1K</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>前端第一次任务</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/29
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/js-css/" style="color: #ffa2c4">js,css</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>参考给出的 HTML 代码和 effect.gif 效果图，完成以下目标：</p>
+<ol>
+<li>完成数据分页显示，每页 5 条数据，默认当前页码为第一页，按照顺序第一页显示第 1-5 条，第二页显示第 6-10 条，以此类推。将每条数据显示到 list-group 元素中。使用已有代码中 list-group，不要修改 list-group 元素的 DOM 结构。动态渲染时，list-group 示例代码可以删除。</li>
+<li>当页码为第一页时，上一页为禁用状态（class&#x3D;disabled），点击无任何变化。</li>
+<li>当页码为最后一页时，下一页为禁用状态（class&#x3D;disabled），点击无任何变化。</li>
+<li>在 id 为 pagination 的元素中正确显示当前页码和总页码（即最大页码）</li>
+</ol>
+<p> GIF动画如下<br> <img src="/../effect.gif" alt="内容"></p>
+<p>给出的HTML代码如下</p>
+<pre><code class="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;课程列表&lt;/title&gt;
+    &lt;script src=&quot;./js/axios.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap.css&quot; /&gt;
+    &lt;style&gt;
+      * &#123;
+        outline: none;
+      &#125;
+      li &#123;
+        list-style-type: none;
+        display: inline;
+      &#125;
+      h1 &#123;
+        text-align: center;
+      &#125;
+      a&#123;
+        text-decoration: none;
+      &#125;
+     
+      .list-group-item&#123;
+        color: black;
+      &#125;
+      .page-link&#123;
+        border: 1px solid;
+        border-color: darkgray;
+        border-radius: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        color: rgba(38, 22, 179, 0.67);
+      &#125;
+      .d&#123;
+        display: flex;
+        justify-content: space-between;
+      &#125;
+      small&#123;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      &#125;
+      .container&#123;
+        position:relative;
+        width:100%;
+      &#125;
+      .row&#123;
+        display: flex;
+        width: 100%;
+      &#125;
+      .col&#123;
+        position: absolute;
+        text-align: center;
+        left: 45%;
+        top: 20px;
+      &#125;
+      #pagination&#123;
+        font-weight: bold;
+      &#125;
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;课程列表&lt;/h1&gt;
+
+    &lt;div id=&quot;list&quot;&gt;
+      &lt;!-- list-group 起始位置  list-group为示例代码，动态渲染时可删除--&gt;
+      &lt;div class=&quot;list-group&quot;&gt;
+        &lt;a href=&quot;#&quot; class=&quot;list-group-item&quot;&gt;
+          &lt;div class=&quot;d&quot; &gt;
+            &lt;h3 class=&quot;mb-1&quot;&gt;带你从入门到实战全面掌握 uni-app&lt;/h3&gt;
+            &lt;small&gt;89.00元&lt;/small&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;mb-1&quot;&gt;
+            本课程将带读者使用 uni-app
+            技术栈，开发一个具有前后端的完整实战项目，让读者在实践中学习，在学习中夯实开发能力。读者将学到登录、注册、修改个人信息等基础功能的开发知识，也能学到发布、创建、删除待办事项、动态发帖等核心功能的编程思想。纸上得来终觉浅，得知此事要躬行。一起实践下吧！
+          &lt;/p&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;!-- list-group 结束位置 --&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-6&quot;&gt;
+          &lt;nav aria-label=&quot;Page navigation&quot;&gt;
+            &lt;ul class=&quot;pagination&quot; &gt;
+              &lt;li id=&quot;prev&quot; class=&quot;page-item disabled&quot; list-style=&quot;none&quot;&gt;
+                &lt;a class=&quot;page-link&quot; href=&quot;javascript:void(0)&quot;&gt;上一页&lt;/a&gt;
+              &lt;/li&gt;
+              &lt;li id=&quot;next&quot; class=&quot;page-item&quot;&gt;
+                &lt;a class=&quot;page-link&quot; href=&quot;javascript:void(0)&quot;&gt;下一页&lt;/a&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/nav&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col&quot;&gt;
+          &lt;div id=&quot;pagination&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+  &lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>css代码这里不放出来了，主要是学习js代码<br>给出了js初始代码</p>
+<pre><code class="js">    const data = [
+  &#123;
+    id: 4715,
+    name: &#39;带你从入门到实战全面掌握 uni-app&#39;,
+    description:
+      &#39;本课程将带读者使用 uni-app 技术栈，开发一个具有前后端的完整实战项目，让读者在实践中学习，在学习中夯实开发能力。读者将学到登录、注册、修改个人信息等基础功能的开发知识，也能学到发布、创建、删除待办事项、动态发帖等核心功能的编程思想。纸上得来终觉浅，得知此事要躬行。一起实践下吧！&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 4452,
+    name: &#39;初中级前端工程师面试宝典&#39;,
+    description:
+      &#39;本课程从教你制作一份「漂亮」的简历开始，将对初中级前端开发工程师在面试过程中遇到的问题进行分类并进行逐一展开讲解。课程内容涵盖从 HTML  及 CSS 基础到前端主流的 Vue / React 框架，还包括如何与 HR 谈薪拿 offer，上面的内容是不是都是你关心的呢？快来开始学习吧~&#39;,
+    price: 4900,
+  &#125;,
+  &#123;
+    id: 4848,
+    name: &#39;微信公众号开发入门&#39;,
+    description:
+      &#39;微信已成为很多人生活的一部分，在庞大用户量的基础下，微信公众号开发也变得热门了。本课程带领大家从 0 到 1 进行微信公众号开发。&#39;,
+    price: 3900,
+  &#125;,
+  &#123;
+    id: 4150,
+    name: &#39;从零入门 React 通关指北&#39;,
+    description:
+      &#39;本门课程将带你从0入门 React 开发，包括函数组件与 class 组件的使用、Hooks 系统基础、以及在实际开发过程中常用的第三方库和丰富的项目实例，怎么样准备好了么？快来开启 React 开发之旅吧！&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 3869,
+    name: &#39;Flask 框架基础&#39;,
+    description:
+      &#39;Python 作为一门优秀的编程语言，在很多领域可以发挥其作用，其中一个广泛使用的领域就是 Web 开发。所谓 Web 开发指的是编写 Web 应用程序用于处理 Web 请求。Python 的语言特性使得自身编写 Web 框架极其容易，以至于现在有上百种 Python 编写的 Web 开发框架。本课程我们使用 Flask 框架来学习 Web 开发。&#39;,
+    price: 9800,
+  &#125;,
+  &#123;
+    id: 3871,
+    name: &#39;JavaScript 从零构建音乐播放器&#39;,
+    description:
+      &#39;本实验采用原生 JavaScript 搭建类似网易云的音乐播放器。应用到的技术包括 ES6 新增的语法糖如解构赋值、箭头函数、展开运算符模板字符串 ，异步处理 Promise，ES6 模块化，异步网络请求 Ajax，单页面应用思想，数据响应式思想。通过上述技术最终完成页面切换，轮播图，音乐播放器等功能。&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 3991,
+    name: &#39;微信小程序开发入门&#39;,
+    description:
+      &#39;本门课程将带你快速入门微信小程序开发，包括如何搭建开发环境、小程序基础语法以及在开发过程中常用的组件与常用 API 的使用，准备好了么？快来开启微信小程序开发之旅吧！&#39;,
+    price: 1490,
+  &#125;,
+  &#123;
+    id: 4830,
+    name: &#39;SpringBoot+Thymeleaf 开发 BBS 论坛&#39;,
+    description:
+      &#39;Spring Boot 是近几年来 Java 社区最有影响力之一的项目，该技术栈已经成为每一位 Java 开发者在技术道路上打怪升级所必要的技能包。本课程会带领大家一步步的了解并熟悉 Spring Boot，并最终收获一个 BBS 论坛项目的实战开发过程。如果你准备学习 Spring Boot 框架、用 Spring Boot 进行项目开发，或者想要自己开发一个论坛项目，那么这个课程非常适合你。&#39;,
+    price: 13900,
+  &#125;,
+  &#123;
+    id: 3574,
+    name: &#39;Vue.js 3 + Node.js 实现线上聊天室&#39;,
+    description:
+      &#39;本次课程将基于 Vue 3、Node.js、MongoDB 及 Socket.io 实现一个聊天室包含整个项目的前后端以及部署知识。\n\n课程前期以讲解 Vue 3 在项目中的使用，自定义属于自己的 Vue 组件库、Vue 3 开发避坑。后期将涉及 Node.js 后端开发、websocket 、MongoDB 的使用、以及如何搭建后端脚手架，同时会讲解如何在云服务中部署项目等。&#39;,
+    price: 8800,
+  &#125;,
+  &#123;
+    id: 3954,
+    name: &#39;Express.js 实现前后端分离的博客系统&#39;,
+    description:
+      &#39;Node.js 是近年来最热门的后端服务器，它的 Express.js 框架是其中最热门的框架。本项目我们使用 Node.js 的 Express.js 框架，以及持久层框架 mongoose，以及数据库 MongoDB，前后端安全校验 JWT，前端 Vue.js 框架。通过这些框架组合，完成一个前后端分离的个人小 Blog 系统。学习该课程可以入门 Node.js 领域的知识，学习掌握 Express.js 相关知识，还可以作为面试实战项目。&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 3472,
+    name: &#39;经典项目：前后端分离网盘系统实战&#39;,
+    description:
+      &#39;本课程主要使用 Spring Boot 2 和 Vue CLI@4 来开发 Web 端网盘系统。Spring Boot 如今已成为 Java 开发必学技术，可以大大简化 Spring 应用的初始搭建以及开发过程；前端将使用 Vue CLI@4，结合当下受欢迎的 Element UI 快速完成网盘页面布局。&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 3326,
+    name: &#39;21 个实验带你快速开发 Django 博客系统&#39;,
+    description:
+      &#39;本课程介绍如何使用 Django 框架快速开发线上博客系统，并通过 Nginx + uWsgi + Supervisor 部署到云服务器的生产环境中。项目还使用 Bootstrap 和 AdminLTE 框架分解搭建博客系统的前端展示页面和后台管理系统。通过本课程，我们可以快速掌握 Django 的项目开发流程，Django 的中间件的高级用法，包括集成 AdminLTE、使用 Redis 提速网站访问和使用 Nginx 、uWsgi 、Supervisor 部署 Django 项目到云服务器中等操作。&#39;,
+  &#125;,
+  &#123;
+    id: 3597,
+    name: &#39;React Hook 打造精美在线记账本&#39;,
+    description:
+      &#39;前端更新速度日新月异，随着 React 和 Typescript 的日益成熟，越来越多的大厂更愿意采用 React 和 Typescript 的组合技术栈。本门课程会对 Typescript 和 React Hook 做一个快速入门的讲解，并通过实际的线上记账软件开发和大家一起感受 React + Typescript 的魅力。&#39;,
+    price: 8900,
+  &#125;,
+  &#123;
+    id: 3484,
+    name: &#39;Vue.js 3 + Vite 2 开发浏览器插件集&#39;,
+    description:
+      &#39;本课程主要使用 Vue.js 3 + Vite  最新技术从零开始开发一款谷歌浏览器插件，包括如何使用 Vue.js 3 创建项目、项目的常见配置，以及 Manifest 文件的常见配置，学完本套课程可以让前端开发者快速了解浏览器插件的运行原理及快速上手浏览器插件开发，同时本套课程对 Vue.js 3 的新特性做了大量的讲解，所有功能均通过 Vue.js 3 新语法开发，所以本套教程也是学习 Vue.js 3 的绝佳课程。&#39;,
+    price: 5900,
+  &#125;,
+  &#123;
+    id: 3314,
+    name: &#39;Three.js 在网页中创建 3D 动画&#39;,
+    description:
+      &#39;Three.js 作为一款前端 3D 引擎，其应用范围越来越广，不管是房产网站的 3D 看房，还是购物网站的 3D 模型预览,都能用到 Three.js。在本门课程中，我们提供了大量的实验环节，让你通过实验学习 Three.js，其中就包括 360 度全景空间预览，地月环绕系统，3D 地图，粒子系统特效等。这些案例能帮助你快速学习 Three.js ，并掌握其中的基础知识。Three.js 已成为前端工程师的一项特殊技能，在面试过程中能让面试官眼前一亮，助你升职加薪！&#39;,
+    price: 6400,
+  &#125;,
+  &#123;
+    id: 2843,
+    name: &#39;Web 前端高级开发技术&#39;,
+    description:
+      &#39;本课程为 Web 前端初级开发技术进阶课程，可以通过本课程学习包括 ES6 和 Less 基础语法，Node.js 基础入门、Express 的使用、webpack 的使用。同时，我们还会学习流行框架 Vue 和 React 的基础特性等。&#39;,
+    price: 16900,
+  &#125;,
+];
+</code></pre>
+<p>初始代码中包含了我们需要实现的页面数据的数组，我们现在要考虑如何利用这一个数组中的数据完成目标编写<br><strong>每一页需要显示5个数据条款，在加载的时候还要把题中给出的示例先清除，我们有以下代码实现功能</strong></p>
+<pre><code class="js">let currentPage = 1; // 当前页码
+let itemsPerPage = 5; // 每页显示的数据条数
+
+// 渲染数据
+function renderData() &#123;
+  let start = (currentPage - 1) * itemsPerPage;
+  let end = start + itemsPerPage;
+  let pageData = data.slice(start, end);
+
+  let listGroup = document.querySelector(&#39;#list&#39;);
+  listGroup.innerHTML = &#39;&#39;; // 清空原有数据
+
+  for (let item of pageData) &#123;
+    // 创建新的 list-group-item 并添加到 listGroup 中
+    let listGroupdiv=document.createElement(&#39;div&#39;);
+    listGroupdiv.className=&quot;list-group&quot;;
+    let listItem = document.createElement(&#39;a&#39;);
+    listItem.href = &#39;#&#39;;
+    listItem.className = &#39;list-group-item&#39;;
+    listItem.innerHTML = `
+      &lt;div class=&quot;d&quot;&gt;
+        &lt;h3 class=&quot;mb-1&quot;&gt;$&#123;item.name&#125;&lt;/h3&gt;
+        &lt;small&gt;$&#123;item.price / 100&#125;元&lt;/small&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;mb-1&quot;&gt;$&#123;item.description&#125;&lt;/p&gt;
+    `;
+    listGroupdiv.appendChild(listItem);
+    listGroup.appendChild(listGroupdiv);
+  &#125;
+&#125;
+</code></pre>
+<p>依照示例中的结构，先找到父元素将其内容清空，然后从当前页面找到data数组中这一页开始和结束对应的元素，slice()方法是选择数组中对应的元素，选择后通过innerHTML方法将元素内容全部清空，接下来按照示例创建元素和类名属性，将其加入到父元素中。</p>
+<p><strong>下面实现更新页码显示</strong></p>
+<pre><code class="js">function updatePagination() 
+&#123;
+    let pagination = document.getElementById(&#39;pagination&#39;);
+    let totalPages = Math.ceil(data.length / itemsPerPage);
+    pagination.textContent = ` 共$&#123;totalPages&#125;页，当前$&#123;currentPage&#125;页 `;
+    &#125;
+</code></pre>
+<p>通过我们上一步设置的页码，将其加入到页脚中，注意取元素的方法${}</p>
+<p><strong>接着更新上一页和下一页的状态</strong></p>
+<pre><code class="js">// 更新上一页和下一页的状态
+function updatePageButtons() &#123;
+  let prev = document.getElementById(&#39;prev&#39;);
+  let next = document.getElementById(&#39;next&#39;);
+  let totalPages = Math.ceil(data.length / itemsPerPage);
+
+  prev.className = currentPage === 1 ? &#39;page-item disabled&#39; : &#39;page-item&#39;;
+  next.className = currentPage === totalPages ? &#39;page-item disabled&#39; : &#39;page-item&#39;;
+&#125;
+</code></pre>
+<p>通过判断页面是否是第一页或是最后一页来更改状态</p>
+<blockquote>
+<p>Math.ceil()方法为向上取整</p>
+</blockquote>
+<p><strong>当页面加载时，渲染第一页的数据</strong></p>
+<pre><code class="js">window.onload = function() &#123;
+  renderData();
+  updatePagination();
+  updatePageButtons();
+&#125;;
+</code></pre>
+<p><strong>当点击上一页和下一页时，更新当前页码并重新渲染数据</strong></p>
+<pre><code class="js">prev.onclick = function() &#123;
+  if (currentPage &gt; 1) &#123;
+    currentPage--;
+    renderData();
+    updatePagination();
+    updatePageButtons();
+  &#125;
+&#125;;
+next.onclick = function() &#123;
+  let totalPages = Math.ceil(data.length / itemsPerPage);
+  if (currentPage &lt; totalPages) &#123;
+    currentPage++;
+    renderData();
+    updatePagination();
+    updatePageButtons();
+  &#125;
+&#125;;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 Wide1k
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;wide1k
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>
