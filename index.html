@@ -181,42 +181,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p>把题目文本中出现的字符串复制粘贴提交3000次即可得出flag</p>
-<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p>f12查看页面中字符串在哪里出现，发现要获得标签${<h1 class="typing"><h1>}$中的文本内容，复制在input里<br>题解脚本如下：</p>
-<pre><code class="py">import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
-
-driver = webdriver.Chrome()
-driver.get(&quot;http://localhost:52571/index.php?start&quot;)
-# 循环提交次数
-
-
-for _ in range(3200):
-
-    time.sleep(0.01)
-    
-    # 获取&lt;h1 class=&quot;typing&quot;&gt;标签的文本内容
-    h1_element = driver.find_element(By.CSS_SELECTOR, &quot;h1.typing&quot;)
-    text_to_copy = h1_element.text
-    
-    # 找到&lt;input&gt;元素并设置文本内容
-    input_element = driver.find_element(By.NAME, &quot;input&quot;)
-    input_element.clear()  # 清空字段内容
-    input_element.send_keys(text_to_copy)  # 设置文本内容
-    
-    # 模拟按回车键以提交表单
-    action = ActionChains(driver)
-    action.send_keys(Keys.RETURN)
-    action.perform()
-    
-    print(f&#39;Submission &#123;_+1&#125; successful. Text: &#123;text_to_copy&#125;&#39;)
-input(&quot;Press Enter to continue...&quot;)
-driver.minimize_window()
-</code></pre>
-<p>这个脚本使用了selenium库自动化web浏览器操作示例，具体可查<a target="_blank" rel="noopener" href="https://python-selenium-zh.readthedocs.io/zh_CN/latest/">selenium中文文档</a><br>注意，在执行完页面操作之后需要添加等待我们手动关闭的操作，不然的话辛苦跑了几分钟的脚本直接自动关闭了还没有flag巨难受（</p>
+            <p>拉取网页内容并复制粘贴提交</p>
 
             
         </div>
@@ -302,7 +267,7 @@ driver.minimize_window()
         
         <span class="tag">
             
-            <a href="/tags/http%EF%BC%8CCTF/" style="color: #00bcd4">http，CTF</a>
+            <a href="/tags/http%EF%BC%8CCTF/" style="color: #ffa2c4">http，CTF</a>
         </span>
         
     </div>
@@ -342,7 +307,7 @@ driver.minimize_window()
         
         <span class="tag">
             
-            <a href="/tags/ctf-xor/" style="color: #ffa2c4">ctf ,xor</a>
+            <a href="/tags/ctf-xor/" style="color: #03a9f4">ctf ,xor</a>
         </span>
         
     </div>
