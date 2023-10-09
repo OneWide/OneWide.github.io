@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CTF博客之xor | Wide1kの小窝</title>
+        <title>whuctf-re-tea | Wide1kの小窝</title>
         <meta name="author" content="wide1k" />
         <meta name="description" content="你是我唯一想要的了解" />
         <meta name="keywords" content="博客,wide" />
@@ -147,46 +147,119 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>CTF博客之xor</h1>
+        <h1>whuctf-re-tea</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/9/24
+            2023/10/9
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/ctf-xor/" style="color: #00a596">ctf ,xor</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>N3wbeeCTF 之writeup  </p>
-<h1 id="只因你太美"><a href="#只因你太美" class="headerlink" title="只因你太美"></a>只因你太美</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><pre><code>a^b^b=a
+        <h1 id="ida页面"><a href="#ida页面" class="headerlink" title="ida页面"></a>ida页面</h1><p><img src="/../image_source/tea.png" alt="tea"><br>分析代码，flag为32位，中间有一个加密函数，给出了s2数组中对应的数据，这里注意0123标注并非正确，因为LL后缀是long long int，占8位字节，而char一个占一字节，所以应该递增8，可以得出v5即flag内容就在s2数组中，我们只要对应解密逆向就好，点进加密函数如图<br><img src="/../image_source/tea%E5%8A%A0%E5%AF%86.png"><br>可以看到出现tea加密中的魔法常数，**-0x61C88647** 即<strong>0x9E3779B9</strong>的负数形式，该算法是典型tea加密，而且v7相当于加密4次，每次加密uint_t32大小的一个数组，一次加8，<br>下面看tea算法加密解密C语言实现样例：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+
+void encrypt (uint32_t* v, uint32_t* k) &#123;
+    uint32_t sum = 0;  // 注意sum也是32位无符号整型
+    uint32_t v0 = v[0], v1 = v[1];
+    uint32_t delta = 0x9e3779b9;
+    uint32_t k0 = k[0], k1 = k[1], k2 = k[2], k3 = k[3];
+
+    for (int i=0; i&lt;32; i++) &#123;
+        sum += delta;
+        v0 += ((v1&lt;&lt;4) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;5) + k1);
+        v1 += ((v0&lt;&lt;4) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;5) + k3);
+    &#125;
+
+    v[0]=v0; 
+    v[1]=v1;
+&#125;
+
+void decrypt (uint32_t* v, uint32_t* k) &#123;
+    uint32_t v0 = v[0], v1 = v[1];
+    uint32_t delta = 0x9e3779b9;
+    uint32_t sum = delta * 32;
+    uint32_t k0 = k[0], k1 = k[1], k2 = k[2], k3 = k[3];
+
+    for (int i=0; i&lt;32; i++) &#123;
+        v1 -= ((v0&lt;&lt;4) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;5) + k3);
+        v0 -= ((v1&lt;&lt;4) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;5) + k1);
+        sum -= delta;
+    &#125;
+
+    v[0]=v0; 
+    v[1]=v1;
+&#125;
+
+// test
+int main()
+&#123;
+    // 两个32位无符号整数，即待加密的64bit明文数据
+    uint32_t v[2] = &#123;0x12345678, 0x78563412&#125;;
+    // 四个32位无符号整数，即128bit的key
+    uint32_t k[4]= &#123;0x1, 0x2, 0x3, 0x4&#125;;
+
+    printf(&quot;Data is : %x %x\n&quot;, v[0], v[1]);
+    encrypt(v, k);
+    printf(&quot;Encrypted data is : %x %x\n&quot;, v[0], v[1]);
+    decrypt(v, k);
+    printf(&quot;Decrypted data is : %x %x\n&quot;, v[0], v[1]);
+
+    return 0;
+&#125;
+/*
+Data is : 12345678 78563412
+Encrypted data is : 9a65a69a 67ed00f6
+Decrypted data is : 12345678 78563412
+*/
 </code></pre>
-<p>且题目中指出utf-8解码出什么，这是提示用只因你太美进行一个解码然后对附件中 </p>
-<pre><code>b&#39;\x83\xe3\xcb\x82\xe0\xd8\xd4\xcf\xff\xa7\xe4\xc8\x9e\xe1\xbb\x91\xbc\xda\x96\xc4\xd4\xd4\xca\xe0\x97\xc0\xd9\xb8\xdd\xe6\xa5\xe3\xc6\xd6\xf5\xc7\xd7\xce\x81\x98&#39;
+<p>对应本题中数据，我们可以采用以下脚本：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+
+
+void decrypt (uint32_t *v,uint32_t *k)&#123;
+    uint32_t v0=v[0],v1=v[1],sum=0xC6EF3720,i;	//这里的sum是0x9e3779b9*32后截取32位的结果，截取很重要。
+    uint32_t delta=0x9e3779b9;
+    uint32_t k0=k[0],k1=k[1],k2=k[2],k3=k[3];
+    for (i=0;i&lt;32;i++)&#123;
+        v1-=((v0&lt;&lt;4)+k2)^(v0+sum)^((v0&gt;&gt;5)+k3);
+        v0-=((v1&lt;&lt;4)+k0)^(v1+sum)^((v1&gt;&gt;5)+k1);
+        sum-=delta;
+    &#125; 
+    v[0]=v0;v[1]=v1;
+&#125;
+int main()
+&#123;
+    char key[]=&quot;Welcome_2_WHUCTF&quot;;
+
+    char text[32]=&#123;0&#125;;
+    *(uint64_t*)&amp;text[0]=0x7CC261B30BFA9228LL;
+    *(uint64_t*)&amp;text[8]=0xA1F3B16FD0860834LL;
+    *(uint64_t*)&amp;text[16]=0xA95B1A3E11FB4D32LL;
+    *(uint64_t*)&amp;text[24]=0x985A36E80F141297LL;
+
+    decrypt((uint32_t*)&amp;text[0], (uint32_t*)key);
+    decrypt((uint32_t*)&amp;text[8],(uint32_t*)key);
+    decrypt((uint32_t*)&amp;text[16],(uint32_t*)key);
+    decrypt((uint32_t*)&amp;text[24],(uint32_t*)key);
+
+    printf(&quot;%s\n&quot;,text);
+    system(&quot;PAUSE&quot;);
+&#125;
 </code></pre>
-<p>进行xor的一个解码<br>这里用到Python的pwn库，进行encode(‘utf-8’)解码指令，然后xor(str1,str2)用str2的内容对str1进行异或操作，具体代码如下：</p>
-<pre><code class="Python">    form pwn import *
-    w=b&#39;\x83\xe3\xcb\x82\xe0\xd8\xd4\xcf\xff\xa7\xe4\xc8\x9e\xe1\xbb\x91\xbc\xda\x96\xc4\xd4\xd4\xca\xe0\x97\xc0\xd9\xb8\xdd\xe6\xa5\xe3\xc6\xd6\xf5\xc7\xd7\xce\x81\x98&#39;
-    password = &#39;只因你太美&#39;.encode(&#39;utf-8&#39;)
-    xor(w,passowrd)
-    print(w)
-</code></pre>
+<blockquote>
+<p>这里我们先把text数组每隔8位把数据传入加密算法里，按照算法相应的位数要求进行加密，最终得到的数组即flag数组</p>
+</blockquote>
+<p>本题的收获是tea算法和对uint32_t,uint_64以及数据大小的理解，通过不同大小数据的转换进行的传参在逆向中很有趣（ps:不能被ida上反汇编的东西迷惑，并不完全对</p>
 
     </div>
     
