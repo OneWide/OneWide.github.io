@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>Tags: ctf ,xor | Wide1kの小窝</title>
+        <title>异常初识 | Wide1kの小窝</title>
         <meta name="author" content="wide1k" />
         <meta name="description" content="你是我唯一想要的了解" />
         <meta name="keywords" content="博客,wide" />
@@ -28,6 +28,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,85 +145,48 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/ctf-%E9%80%86%E5%90%91/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                ctf,逆向
-            </a>
+                <div class="article">
+    <div>
+        <h1>异常初识</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/16
         </span>
         
         
-        
-        <span>
-            <a href="/tags/ctf-xor/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                ctf ,xor
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/ctf-%E9%80%86%E5%90%91/" style="color: #00a596">ctf,逆向</a>
+            </span>
+            
         </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/tags/js-css/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                js,css
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/http%EF%BC%8CCTF/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                http，CTF
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/24</div>
-            <a href="/2023/09/24/baby%20xor/">
-                <h3>CTF博客之xor</h3>
-            </a>
-            <div class="info">
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/ctf-xor/" style="color: #00bcd4">ctf ,xor</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <h1 id="逆向异常处理程序"><a href="#逆向异常处理程序" class="headerlink" title="逆向异常处理程序"></a>逆向异常处理程序</h1><p>所谓cpp异常处理就是cpp的try except,catch块，因为ida不会反编译异常处理的程序，所以需要在正常流程中patch跳转到异常处理程序所在的地方。为了让我明白这个知识点illustager师傅甚至专门出了一道题（我哭死），下图为程序汇编页面<br><img src="/../image_source/%E6%B1%87%E7%BC%96.png"><br>按下f5后进入反汇编页面阅读代码规则<br><img src="/../image_source/%E5%8F%8D%E6%B1%87%E7%BC%96.png"><br>发现是读入一个大小为14的字符串，对这个字符串进行异或2得到答案。但是我们这么做是不正确的，因为字符串大小为14而程序中直接从下标14开始读取，这会引发异常情况，对应这种情况我们可以回到刚刚的汇编页面找到这一块程序对应的try块，try块的catch块是其异常处理程序，我们只要patch到这里即可。<br><img src="/../image_source/%E4%BF%AE%E6%94%B9.png"><br>在这里跳转到loc_401677重新反汇编即可得到正确加密代码，修改后重新f5结果如下<br><img src="/../image_source/%E7%BB%93%E6%9E%9C.png"><br>即异或的是1</p>
+<blockquote>
+<p>除此之外通过这个题目还了解到了一点<strong>std::string::at</strong>作用相当于str[i],前者更安全一点，具体可以查阅相关文档。</p>
+</blockquote>
+<p>最后再次感谢illustager师傅！</p>
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -251,6 +218,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
