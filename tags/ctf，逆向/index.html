@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CrackMe | Wide1kの小窝</title>
+        <title>Tags: ctf，逆向 | Wide1kの小窝</title>
         <meta name="author" content="wide1k" />
         <meta name="description" content="你是我唯一想要的了解" />
         <meta name="keywords" content="博客,wide" />
@@ -28,10 +28,6 @@
 
 
 <script src="/js/lib/preview.js"></script>
-
-
-
-
 
 
 
@@ -145,48 +141,96 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div class="article">
-    <div>
-        <h1>CrackMe</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/10/11
+                <div id="archives">
+    
+    <div class="categories-tags">
+        
+        
+        
+        <span>
+            <a href="/tags/ctf-%E9%80%86%E5%90%91/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                ctf,逆向
+            </a>
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
+        
+        <span>
+            <a href="/tags/ctf-xor/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                ctf ,xor
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/js-css/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                js,css
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/http%EF%BC%8CCTF/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                http，CTF
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/ctf%EF%BC%8C%E9%80%86%E5%90%91/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                ctf，逆向
+            </a>
+        </span>
+        
+        
+        
+        
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2023/10/18</div>
+            <a href="/2023/10/18/baby-go/">
+                <h3>baby_go</h3>
+            </a>
+            <div class="info">
                 
-                <a href="/tags/ctf-%E9%80%86%E5%90%91/" style="color: #00bcd4">ctf,逆向</a>
-            </span>
-            
-        </span>
-        
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/ctf%EF%BC%8C%E9%80%86%E5%90%91/" style="color: #ffa2c4">ctf，逆向</a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
     </div>
-    
-    <div class="content" v-pre>
-        <h1 id="过程中的问题"><a href="#过程中的问题" class="headerlink" title="过程中的问题"></a>过程中的问题</h1><p>点开题目的可执行文件发现是一个窗口，按钮被取消按下，拖进ida发现一堆WindowsAPI，查一部分后发现是创建窗口的。查了几小时确定不会写后选择求助illustager师傅，学习到ida的除去反汇编外一些其他操作：在流程窗口改写汇编代码实现强制跳转然后patch出来。</p>
-<blockquote>
-<p>期间发生种种问题，keypatch无法使用，最终发现是因为python库文件路径不对（应该是pip初始化下载路径问题，目前还没解决，只是简单粘贴），以及six文件夹名称错误，还有问题是7z压缩包用banzip解压后会丢失一些东西，所以一开始没有成功识别python环境，目前keypatch仍处于无法使用状态，与six库中python代码有关，还未解决。还有最后的文件patch出来时报错无权限，是因为下载的文件时只读文件，修改属性后可以patch</p>
-</blockquote>
-<h2 id="题目解决"><a href="#题目解决" class="headerlink" title="题目解决"></a>题目解决</h2><p>在跳转处f2打好断点后按f9单步执行，查看跳转，修改跳转指令，强制跳转到输出窗口即可（不要强行进行源代码解密逆向，加密非常复杂</p>
-
-    </div>
-    
-    
-    
-    
-    
-    
     
 </div>
 
@@ -218,12 +262,6 @@
             
         </div>
         <script src="/js/main.js"></script>
-        
-        
-
-
-
-
         
     </body>
 </html>

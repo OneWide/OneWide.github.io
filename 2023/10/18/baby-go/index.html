@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CrackMe | Wide1kの小窝</title>
+        <title>baby_go | Wide1kの小窝</title>
         <meta name="author" content="wide1k" />
         <meta name="description" content="你是我唯一想要的了解" />
         <meta name="keywords" content="博客,wide" />
@@ -147,14 +147,14 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>CrackMe</h1>
+        <h1>baby_go</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/10/11
+            2023/10/18
         </span>
         
         
@@ -166,7 +166,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/ctf-%E9%80%86%E5%90%91/" style="color: #00bcd4">ctf,逆向</a>
+                <a href="/tags/ctf%EF%BC%8C%E9%80%86%E5%90%91/" style="color: #00a596">ctf，逆向</a>
             </span>
             
         </span>
@@ -174,11 +174,15 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="过程中的问题"><a href="#过程中的问题" class="headerlink" title="过程中的问题"></a>过程中的问题</h1><p>点开题目的可执行文件发现是一个窗口，按钮被取消按下，拖进ida发现一堆WindowsAPI，查一部分后发现是创建窗口的。查了几小时确定不会写后选择求助illustager师傅，学习到ida的除去反汇编外一些其他操作：在流程窗口改写汇编代码实现强制跳转然后patch出来。</p>
+        <p>在查了很多博客后有以下知识点：</p>
 <blockquote>
-<p>期间发生种种问题，keypatch无法使用，最终发现是因为python库文件路径不对（应该是pip初始化下载路径问题，目前还没解决，只是简单粘贴），以及six文件夹名称错误，还有问题是7z压缩包用banzip解压后会丢失一些东西，所以一开始没有成功识别python环境，目前keypatch仍处于无法使用状态，与six库中python代码有关，还未解决。还有最后的文件patch出来时报错无权限，是因为下载的文件时只读文件，修改属性后可以patch</p>
+<p>ida中go语言程序的逻辑入口其实是main.mian()函数，cgo是把go和c连接起来的方法。</p>
 </blockquote>
-<h2 id="题目解决"><a href="#题目解决" class="headerlink" title="题目解决"></a>题目解决</h2><p>在跳转处f2打好断点后按f9单步执行，查看跳转，修改跳转指令，强制跳转到输出窗口即可（不要强行进行源代码解密逆向，加密非常复杂</p>
+<p>打开ida看其逻辑发现有一个字符串比较，猜测可能是flag的比较<br><img src="/../image_source/go1.png"><br>跳到汇编代码查看其比较的寄存器，memequal是比较的值在其寄存器中<br><img src="/../image_source/go2.png"><br>比较中的rbx值从unk_4d92091中传来，我们跳转后看一看，从前面的60我们先导出60个值。如下</p>
+<blockquote>
+<p>cPQebAcRp+n+ZeP+YePEWfP7bej4YefCYd&#x2F;7cuP7WfcPb&#x2F;URYeMRbesObi&#x2F;&#x3D;</p>
+</blockquote>
+<p>目测是base64，在cgo_enc中查看enc函数确实是base64加密，但是我们直接解密发现不对，可能是函数中有换表，在打了断点之后动态调试查看换过的base64表，补足64位然后即可解出flag</p>
 
     </div>
     
