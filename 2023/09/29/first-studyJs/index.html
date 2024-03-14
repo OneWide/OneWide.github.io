@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="false" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>前端第一次任务 | 一块的小屋</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="对前端中js的学习，使页面渲染呈现对应的效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端第一次任务">
+<meta property="og:url" content="http://example.com/2023/09/29/first-studyJs/index.html">
+<meta property="og:site_name" content="一块的小屋">
+<meta property="og:description" content="对前端中js的学习，使页面渲染呈现对应的效果">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image_source/effect.gif">
+<meta property="article:published_time" content="2023-09-29T02:25:26.000Z">
+<meta property="article:modified_time" content="2023-12-19T05:15:54.031Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="js,css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image_source/effect.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="一块的小屋" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>一块的小屋 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/avatar.jpg></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">OneWide </div>
+      <div class="dot"></div>
+      <div class="subtitle">你是我唯一想要的了解 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/OneWide" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/CTF/">
+                CTF
+                <div class="category-count">9</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">
+                前端
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                机器学习
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Python%EF%BC%8CNumpy-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">Python，Numpy,机器学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RSA/" rel="tag">RSA</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ctf-xor/" rel="tag">ctf ,xor</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ctf-Web/" rel="tag">ctf,Web</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ctf-%E9%80%86%E5%90%91/" rel="tag">ctf,逆向</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ctf%E3%80%81%E9%80%86%E5%90%91/" rel="tag">ctf、逆向</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ctf%EF%BC%8C%E9%80%86%E5%90%91/" rel="tag">ctf，逆向</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/http%EF%BC%8CCTF/" rel="tag">http，CTF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/js-css/" rel="tag">js,css</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%8CVFL/" rel="tag">机器学习，VFL</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-first-studyJs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        前端第一次任务
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-29T02:25:26.000Z" itemprop="datePublished">2023-09-29</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            9.6k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-css/" rel="tag">js,css</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>参考给出的 HTML 代码和 effect.gif 效果图，完成以下目标：</p>
+<ol>
+<li>完成数据分页显示，每页 5 条数据，默认当前页码为第一页，按照顺序第一页显示第 1-5 条，第二页显示第 6-10 条，以此类推。将每条数据显示到 list-group 元素中。使用已有代码中 list-group，不要修改 list-group 元素的 DOM 结构。动态渲染时，list-group 示例代码可以删除。</li>
+<li>当页码为第一页时，上一页为禁用状态（class&#x3D;disabled），点击无任何变化。</li>
+<li>当页码为最后一页时，下一页为禁用状态（class&#x3D;disabled），点击无任何变化。</li>
+<li>在 id 为 pagination 的元素中正确显示当前页码和总页码（即最大页码）</li>
+</ol>
+<p> GIF动画如下<br> <img src="/../image_source/effect.gif" alt="内容"></p>
+<p>给出的HTML代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>课程列表<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./js/axios.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;bootstrap.css&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      * &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">outline</span>: none;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">li</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">list-style-type</span>: none;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: inline;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">h1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">a</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-decoration</span>: none;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">     </span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.list-group-item</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: black;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.page-link</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-color</span>: darkgray;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding-left</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding-right</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding-top</span>: <span class="number">3px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding-bottom</span>: <span class="number">3px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">38</span>, <span class="number">22</span>, <span class="number">179</span>, <span class="number">0.67</span>);</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.d</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: space-between;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      small&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.container</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>:relative;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>:<span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.row</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-class">.col</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">left</span>: <span class="number">45%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">top</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">      <span class="selector-id">#pagination</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-weight</span>: bold;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>课程列表<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- list-group 起始位置  list-group为示例代码，动态渲染时可删除--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list-group&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;d&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;mb-1&quot;</span>&gt;</span>带你从入门到实战全面掌握 uni-app<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">small</span>&gt;</span>89.00元<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;mb-1&quot;</span>&gt;</span></span><br><span class="line">            本课程将带读者使用 uni-app</span><br><span class="line">            技术栈，开发一个具有前后端的完整实战项目，让读者在实践中学习，在学习中夯实开发能力。读者将学到登录、注册、修改个人信息等基础功能的开发知识，也能学到发布、创建、删除待办事项、动态发帖等核心功能的编程思想。纸上得来终觉浅，得知此事要躬行。一起实践下吧！</span><br><span class="line">          <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- list-group 结束位置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-6&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">nav</span> <span class="attr">aria-label</span>=<span class="string">&quot;Page navigation&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;pagination&quot;</span> &gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;prev&quot;</span> <span class="attr">class</span>=<span class="string">&quot;page-item disabled&quot;</span> <span class="attr">list-style</span>=<span class="string">&quot;none&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;javascript:void(0)&quot;</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;next&quot;</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;javascript:void(0)&quot;</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;pagination&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;index.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>css代码这里不放出来了，主要是学习js代码<br>给出了js初始代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> data = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">4715</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;带你从入门到实战全面掌握 uni-app&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程将带读者使用 uni-app 技术栈，开发一个具有前后端的完整实战项目，让读者在实践中学习，在学习中夯实开发能力。读者将学到登录、注册、修改个人信息等基础功能的开发知识，也能学到发布、创建、删除待办事项、动态发帖等核心功能的编程思想。纸上得来终觉浅，得知此事要躬行。一起实践下吧！&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">4452</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;初中级前端工程师面试宝典&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程从教你制作一份「漂亮」的简历开始，将对初中级前端开发工程师在面试过程中遇到的问题进行分类并进行逐一展开讲解。课程内容涵盖从 HTML  及 CSS 基础到前端主流的 Vue / React 框架，还包括如何与 HR 谈薪拿 offer，上面的内容是不是都是你关心的呢？快来开始学习吧~&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">4900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">4848</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;微信公众号开发入门&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;微信已成为很多人生活的一部分，在庞大用户量的基础下，微信公众号开发也变得热门了。本课程带领大家从 0 到 1 进行微信公众号开发。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">3900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">4150</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;从零入门 React 通关指北&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本门课程将带你从0入门 React 开发，包括函数组件与 class 组件的使用、Hooks 系统基础、以及在实际开发过程中常用的第三方库和丰富的项目实例，怎么样准备好了么？快来开启 React 开发之旅吧！&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3869</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Flask 框架基础&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;Python 作为一门优秀的编程语言，在很多领域可以发挥其作用，其中一个广泛使用的领域就是 Web 开发。所谓 Web 开发指的是编写 Web 应用程序用于处理 Web 请求。Python 的语言特性使得自身编写 Web 框架极其容易，以至于现在有上百种 Python 编写的 Web 开发框架。本课程我们使用 Flask 框架来学习 Web 开发。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">9800</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3871</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;JavaScript 从零构建音乐播放器&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本实验采用原生 JavaScript 搭建类似网易云的音乐播放器。应用到的技术包括 ES6 新增的语法糖如解构赋值、箭头函数、展开运算符模板字符串 ，异步处理 Promise，ES6 模块化，异步网络请求 Ajax，单页面应用思想，数据响应式思想。通过上述技术最终完成页面切换，轮播图，音乐播放器等功能。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3991</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;微信小程序开发入门&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本门课程将带你快速入门微信小程序开发，包括如何搭建开发环境、小程序基础语法以及在开发过程中常用的组件与常用 API 的使用，准备好了么？快来开启微信小程序开发之旅吧！&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">1490</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">4830</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;SpringBoot+Thymeleaf 开发 BBS 论坛&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;Spring Boot 是近几年来 Java 社区最有影响力之一的项目，该技术栈已经成为每一位 Java 开发者在技术道路上打怪升级所必要的技能包。本课程会带领大家一步步的了解并熟悉 Spring Boot，并最终收获一个 BBS 论坛项目的实战开发过程。如果你准备学习 Spring Boot 框架、用 Spring Boot 进行项目开发，或者想要自己开发一个论坛项目，那么这个课程非常适合你。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">13900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3574</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Vue.js 3 + Node.js 实现线上聊天室&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本次课程将基于 Vue 3、Node.js、MongoDB 及 Socket.io 实现一个聊天室包含整个项目的前后端以及部署知识。\n\n课程前期以讲解 Vue 3 在项目中的使用，自定义属于自己的 Vue 组件库、Vue 3 开发避坑。后期将涉及 Node.js 后端开发、websocket 、MongoDB 的使用、以及如何搭建后端脚手架，同时会讲解如何在云服务中部署项目等。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8800</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3954</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Express.js 实现前后端分离的博客系统&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;Node.js 是近年来最热门的后端服务器，它的 Express.js 框架是其中最热门的框架。本项目我们使用 Node.js 的 Express.js 框架，以及持久层框架 mongoose，以及数据库 MongoDB，前后端安全校验 JWT，前端 Vue.js 框架。通过这些框架组合，完成一个前后端分离的个人小 Blog 系统。学习该课程可以入门 Node.js 领域的知识，学习掌握 Express.js 相关知识，还可以作为面试实战项目。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3472</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;经典项目：前后端分离网盘系统实战&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程主要使用 Spring Boot 2 和 Vue CLI@4 来开发 Web 端网盘系统。Spring Boot 如今已成为 Java 开发必学技术，可以大大简化 Spring 应用的初始搭建以及开发过程；前端将使用 Vue CLI@4，结合当下受欢迎的 Element UI 快速完成网盘页面布局。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3326</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;21 个实验带你快速开发 Django 博客系统&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程介绍如何使用 Django 框架快速开发线上博客系统，并通过 Nginx + uWsgi + Supervisor 部署到云服务器的生产环境中。项目还使用 Bootstrap 和 AdminLTE 框架分解搭建博客系统的前端展示页面和后台管理系统。通过本课程，我们可以快速掌握 Django 的项目开发流程，Django 的中间件的高级用法，包括集成 AdminLTE、使用 Redis 提速网站访问和使用 Nginx 、uWsgi 、Supervisor 部署 Django 项目到云服务器中等操作。&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3597</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;React Hook 打造精美在线记账本&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;前端更新速度日新月异，随着 React 和 Typescript 的日益成熟，越来越多的大厂更愿意采用 React 和 Typescript 的组合技术栈。本门课程会对 Typescript 和 React Hook 做一个快速入门的讲解，并通过实际的线上记账软件开发和大家一起感受 React + Typescript 的魅力。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">8900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3484</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Vue.js 3 + Vite 2 开发浏览器插件集&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程主要使用 Vue.js 3 + Vite  最新技术从零开始开发一款谷歌浏览器插件，包括如何使用 Vue.js 3 创建项目、项目的常见配置，以及 Manifest 文件的常见配置，学完本套课程可以让前端开发者快速了解浏览器插件的运行原理及快速上手浏览器插件开发，同时本套课程对 Vue.js 3 的新特性做了大量的讲解，所有功能均通过 Vue.js 3 新语法开发，所以本套教程也是学习 Vue.js 3 的绝佳课程。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">5900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">3314</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Three.js 在网页中创建 3D 动画&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;Three.js 作为一款前端 3D 引擎，其应用范围越来越广，不管是房产网站的 3D 看房，还是购物网站的 3D 模型预览,都能用到 Three.js。在本门课程中，我们提供了大量的实验环节，让你通过实验学习 Three.js，其中就包括 360 度全景空间预览，地月环绕系统，3D 地图，粒子系统特效等。这些案例能帮助你快速学习 Three.js ，并掌握其中的基础知识。Three.js 已成为前端工程师的一项特殊技能，在面试过程中能让面试官眼前一亮，助你升职加薪！&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">6400</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">2843</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Web 前端高级开发技术&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>:</span><br><span class="line">      <span class="string">&#x27;本课程为 Web 前端初级开发技术进阶课程，可以通过本课程学习包括 ES6 和 Less 基础语法，Node.js 基础入门、Express 的使用、webpack 的使用。同时，我们还会学习流行框架 Vue 和 React 的基础特性等。&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">16900</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>初始代码中包含了我们需要实现的页面数据的数组，我们现在要考虑如何利用这一个数组中的数据完成目标编写<br><strong>每一页需要显示5个数据条款，在加载的时候还要把题中给出的示例先清除，我们有以下代码实现功能</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> currentPage = <span class="number">1</span>; <span class="comment">// 当前页码</span></span><br><span class="line"><span class="keyword">let</span> itemsPerPage = <span class="number">5</span>; <span class="comment">// 每页显示的数据条数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 渲染数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">renderData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> start = (currentPage - <span class="number">1</span>) * itemsPerPage;</span><br><span class="line">  <span class="keyword">let</span> end = start + itemsPerPage;</span><br><span class="line">  <span class="keyword">let</span> pageData = data.<span class="title function_">slice</span>(start, end);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> listGroup = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#list&#x27;</span>);</span><br><span class="line">  listGroup.<span class="property">innerHTML</span> = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 清空原有数据</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> pageData) &#123;</span><br><span class="line">    <span class="comment">// 创建新的 list-group-item 并添加到 listGroup 中</span></span><br><span class="line">    <span class="keyword">let</span> listGroupdiv=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">    listGroupdiv.<span class="property">className</span>=<span class="string">&quot;list-group&quot;</span>;</span><br><span class="line">    <span class="keyword">let</span> listItem = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    listItem.<span class="property">href</span> = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    listItem.<span class="property">className</span> = <span class="string">&#x27;list-group-item&#x27;</span>;</span><br><span class="line">    listItem.<span class="property">innerHTML</span> = <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div class=&quot;d&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;h3 class=&quot;mb-1&quot;&gt;<span class="subst">$&#123;item.name&#125;</span>&lt;/h3&gt;</span></span><br><span class="line"><span class="string">        &lt;small&gt;<span class="subst">$&#123;item.price / <span class="number">100</span>&#125;</span>元&lt;/small&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;p class=&quot;mb-1&quot;&gt;<span class="subst">$&#123;item.description&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">    listGroupdiv.<span class="title function_">appendChild</span>(listItem);</span><br><span class="line">    listGroup.<span class="title function_">appendChild</span>(listGroupdiv);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依照示例中的结构，先找到父元素将其内容清空，然后从当前页面找到data数组中这一页开始和结束对应的元素，slice()方法是选择数组中对应的元素，选择后通过innerHTML方法将元素内容全部清空，接下来按照示例创建元素和类名属性，将其加入到父元素中。</p>
+<p><strong>下面实现更新页码显示</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">updatePagination</span>(<span class="params"></span>) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> pagination = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;pagination&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> totalPages = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(data.<span class="property">length</span> / itemsPerPage);</span><br><span class="line">    pagination.<span class="property">textContent</span> = <span class="string">` 共<span class="subst">$&#123;totalPages&#125;</span>页，当前<span class="subst">$&#123;currentPage&#125;</span>页 `</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>通过我们上一步设置的页码，将其加入到页脚中，注意取元素的方法${}</p>
+<p><strong>接着更新上一页和下一页的状态</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新上一页和下一页的状态</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updatePageButtons</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;prev&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> next = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;next&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> totalPages = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(data.<span class="property">length</span> / itemsPerPage);</span><br><span class="line"></span><br><span class="line">  prev.<span class="property">className</span> = currentPage === <span class="number">1</span> ? <span class="string">&#x27;page-item disabled&#x27;</span> : <span class="string">&#x27;page-item&#x27;</span>;</span><br><span class="line">  next.<span class="property">className</span> = currentPage === totalPages ? <span class="string">&#x27;page-item disabled&#x27;</span> : <span class="string">&#x27;page-item&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过判断页面是否是第一页或是最后一页来更改状态</p>
+<blockquote>
+<p>Math.ceil()方法为向上取整</p>
+</blockquote>
+<p><strong>当页面加载时，渲染第一页的数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">renderData</span>();</span><br><span class="line">  <span class="title function_">updatePagination</span>();</span><br><span class="line">  <span class="title function_">updatePageButtons</span>();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>当点击上一页和下一页时，更新当前页码并重新渲染数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">prev.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (currentPage &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    currentPage--;</span><br><span class="line">    <span class="title function_">renderData</span>();</span><br><span class="line">    <span class="title function_">updatePagination</span>();</span><br><span class="line">    <span class="title function_">updatePageButtons</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">next.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> totalPages = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(data.<span class="property">length</span> / itemsPerPage);</span><br><span class="line">  <span class="keyword">if</span> (currentPage &lt; totalPages) &#123;</span><br><span class="line">    currentPage++;</span><br><span class="line">    <span class="title function_">renderData</span>();</span><br><span class="line">    <span class="title function_">updatePagination</span>();</span><br><span class="line">    <span class="title function_">updatePageButtons</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/10/06/typing-train/"
+      title="typing_train"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        typing_train
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/09/25/http-baby/"
+      title="Http_baby"
+     >
+
+    <p class="title-text">
+      
+        Http_baby
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+  
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <div id="comment-card" class="comment-card">
+    <div class="main-title-bar">
+      <div class="main-title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="vcomments"></div>
+  </div>
+  <script>
+      new Valine({"enable":true,"appId":null,"appKey":null,"placeholder":"Just go go","pageSize":10,"highlight":true,"serverURLs":null,"el":"#vcomments"});
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/twikoo/1.6.26/twikoo.all.min.js"></script>
+  <div id="comment-card" class="comment-card">
+    <div class="main-title-bar">
+      <div class="main-title-dot"></div>
+      <div class="main-title">Comments </div>
+    </div>
+    <div id="tcomment"></div>
+  </div>
+  <script>
+      twikoo.init({
+          envId: '',
+          el: '#tcomment',
+          region: '',
+          path: 'location.pathname',
+          lang: '',
+      })
+  </script>
+  
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 OneWide<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
