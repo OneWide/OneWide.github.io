@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="John Doe" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  
+  
+  <title>
+    
+      腾讯游戏安全AI方向 
+      
+      
+      |
+    
+     Wide1k
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img no-lazy src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Wide1k</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">腾讯游戏安全AI方向</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2026-04-14 15:00:55
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="游戏行为预测训练框架-技术设计文档"><a href="#游戏行为预测训练框架-技术设计文档" class="headerlink" title="游戏行为预测训练框架 - 技术设计文档"></a>游戏行为预测训练框架 - 技术设计文档</h1><blockquote>
+<p>为了直接详细的了解设计思路，就不写成长篇大论的设计报告了，直接以技术文档（博客）形式展开</p>
+</blockquote>
+<h2 id="一、项目概述"><a href="#一、项目概述" class="headerlink" title="一、项目概述"></a>一、项目概述</h2><h3 id="1-1-任务定义"><a href="#1-1-任务定义" class="headerlink" title="1.1 任务定义"></a>1.1 任务定义</h3><p><strong>输入</strong>：20秒游戏日志（时间戳 + 玩家位置&#x2F;速度&#x2F;朝向&#x2F;状态等事件）<br><strong>输出</strong>：玩家在 t&#x3D;20s 时刻的行为决策分类</p>
+<ul>
+<li><strong>6分类</strong>：Action（开镜&#x2F;关镜等一般动作）、Fire（开火）、Grenade（投掷物）、SkillStart（技能释放）、BeingResuce（被救援）、Looting（搜刮）</li>
+<li><strong>意图决策</strong>：交战（Action&#x2F;Fire&#x2F;Grenade&#x2F;SkillStart）或 避战（BeingResuce&#x2F;Looting）</li>
+</ul>
+<h3 id="1-2-数据规模"><a href="#1-2-数据规模" class="headerlink" title="1.2 数据规模"></a>1.2 数据规模</h3><ul>
+<li>总样本：289,201 个 TXT 文件</li>
+<li>划分比例：训练集 60% (173,520) &#x2F; 验证集 20% (57,840) &#x2F; 测试集 20% (57,841)</li>
+<li>4个玩家群体：高水平(0) &#x2F; 跑刀(1) &#x2F; 普通(2) &#x2F; 作弊(3)</li>
+<li>最终预测：1000个无决策数据预测</li>
+</ul>
+<h3 id="1-3-核心难点"><a href="#1-3-核心难点" class="headerlink" title="1.3 核心难点"></a>1.3 核心难点</h3><ul>
+<li><strong>类别极度不平衡</strong>：长尾分布数据，Fire 占 51%，BeingResuce 仅 0.5%</li>
+<li><strong>特征维度高</strong>：需要处理空间、时间、交互等多个维度的特征</li>
+<li><strong>Action 识别困难</strong>：开镜&#x2F;关镜与 Fire 在物理上有极强伴随性，容易混淆</li>
+</ul>
+<hr>
+<h2 id="二、数据预处理设计"><a href="#二、数据预处理设计" class="headerlink" title="二、数据预处理设计"></a>二、数据预处理设计</h2><h3 id="2-1-三级缓存策略"><a href="#2-1-三级缓存策略" class="headerlink" title="2.1 三级缓存策略"></a>2.1 三级缓存策略</h3><h4 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h4><p>289K 个 TXT 文件，每个 epoch 直接读取需要 &gt;10 分钟，时间全部花在了I&#x2F;O上，拖累训练速度，且比赛时间有限，因此必须先将txt文件处理好，提高读写速度。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>存储介质</th>
+<th>访问速度</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L1</td>
+<td>内存 (LRU Cache)</td>
+<td>纳秒级</td>
+<td>运行时缓存热点样本</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>磁盘 (.npy 数组)</td>
+<td>微秒级</td>
+<td>预处理后的特征张量</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>原始 TXT</td>
+<td>毫秒级</td>
+<td>首次读取时解析，生成 L2 缓存</td>
+</tr>
+</tbody></table>
+<h4 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TXT → GameLogParser.parse_file() → 特征工程 → .npy (numpy数组)</span><br><span class="line">                                        ↓</span><br><span class="line">                              metadata.parquet (文件路径映射表)</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么用 numpy 而不是 pickle&#x2F;feather？</strong></p>
+<ul>
+<li>numpy 的 <code>.npy</code> 格式是二进制存储，读写速度最快</li>
+<li>与 PyTorch 的 <code>torch.FloatTensor</code> 直接兼容，零转换开销</li>
+<li>单个文件约 1-2MB，内存映射友好</li>
+</ul>
+<h3 id="2-2-解析器-GameLogParser"><a href="#2-2-解析器-GameLogParser" class="headerlink" title="2.2 解析器 (GameLogParser)"></a>2.2 解析器 (GameLogParser)</h3><h4 id="数据格式识别"><a href="#数据格式识别" class="headerlink" title="数据格式识别"></a>数据格式识别</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.00|游戏开始|2651|4|无名          ← 第一行确定主玩家ID</span><br><span class="line">0.00|玩家基础信息|玩家2651|6809.7|-227.6|-4589.2|268.0|355.8|-0.1|0.0|-3.4|6809.7|-226.9|-4589.2|120.0||关镜</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键设计决策"><a href="#关键设计决策" class="headerlink" title="关键设计决策"></a>关键设计决策</h4><p><strong>1. 主玩家识别</strong></p>
+<ul>
+<li>从第一行 <code>游戏开始</code> 提取 <code>player_id</code></li>
+<li><strong>为什么</strong>：每个文件最终都是服务于一个主玩家的决策，其他玩家<strong>都可以视为是环境信息</strong></li>
+</ul>
+<p><strong>2. 队伍信息提取</strong></p>
+<ul>
+<li>从 <code>游戏开始</code> 行提取 <code>team_id</code></li>
+<li><strong>用途</strong>：计算 <code>is_teammate</code> 特征，帮助模型区分救援队友 vs 攻击敌人</li>
+</ul>
+<p><strong>3. 玩家基础信息解析 (17字段)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[0]  timestamp          → 时间戳 (用于重采样)</span><br><span class="line">[1]  event_type         → &quot;玩家基础信息&quot;</span><br><span class="line">[2]  player_id          → &quot;玩家2651&quot; (去除&quot;玩家&quot;前缀)</span><br><span class="line">[3-5] pos_x/y/z         → 3D坐标 (归一化/10000)</span><br><span class="line">[6-7] weapon_yaw/pitch  → 武器朝向 (度→sin/cos)</span><br><span class="line">[8-10] vel_x/y/z        → 移动速度 (归一化/50)</span><br><span class="line">[11-13] cam_x/y/z       → 相机坐标 (归一化/10000)</span><br><span class="line">[14]  fov               → 视野范围 (归一化/120)</span><br><span class="line">[15]  ray_visibility    → 射线可见性 (-1=不在视野, 0=遮挡, 0~1=可见占比)</span><br><span class="line">[16]  scope_state       → 开镜状态 (0=关镜, 1=开镜)</span><br></pre></td></tr></table></figure>
+
+<p>除了位置信息与角度朝向信息外，<strong>为什么选取其他这些特征？</strong></p>
+<ul>
+<li><code>scope_state</code>：Action (开镜) 的直接信号，从 0→1 表示开镜</li>
+<li><code>ray_visibility</code>：Fire (开火) 的关键辅助，判断准星是否对准敌人</li>
+<li><code>fov</code>：开镜时 FOV 会瞬间缩小，与 scope_state 联合使用提升 Action 识别</li>
+<li><code>is_teammate</code>：BeingResuce (救援) 的强信号，被救援对象一定是队友</li>
+</ul>
+<h3 id="2-3-时序重采样-20Hz-固定频率"><a href="#2-3-时序重采样-20Hz-固定频率" class="headerlink" title="2.3 时序重采样 (20Hz 固定频率)"></a>2.3 时序重采样 (20Hz 固定频率)</h3><h4 id="设计思路-1"><a href="#设计思路-1" class="headerlink" title="设计思路"></a>设计思路</h4><p>原始数据是离散时间戳（0.00, 0.05, 0.10, 0.15… 但可能缺失某些帧），需要统一为 400 帧的固定长度序列。</p>
+<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target_times = np.arange(<span class="number">0</span>, <span class="number">20.0</span>, <span class="number">0.05</span>)  <span class="comment"># 0.00, 0.05, 0.10, ..., 19.95 (400个点)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>缺失帧填充策略</strong>：</p>
+<ul>
+<li>使用 **前向填充 (Forward Fill)**：如果 t&#x3D;0.15 没有数据，使用 t&#x3D;0.10 的值</li>
+<li>开头缺失：用第一帧填充</li>
+<li>结尾缺失：用最后一帧填充</li>
+</ul>
+<p><strong>角度处理</strong>：</p>
+<ul>
+<li>yaw&#x2F;pitch 转换为 <code>sin/cos</code> 编码，避免 0°&#x2F;360° 的跳变问题</li>
+<li>例如：yaw&#x3D;359° 和 yaw&#x3D;1° 在数值上相差 358，但在物理上只差 2°</li>
+<li>sin(359°)≈-0.017, cos(359°)≈0.999 → sin(1°)≈0.017, cos(1°)≈0.999 (平滑过渡)</li>
+</ul>
+<h3 id="2-4-空间特征计算-相对特征"><a href="#2-4-空间特征计算-相对特征" class="headerlink" title="2.4 空间特征计算 (相对特征)"></a>2.4 空间特征计算 (相对特征)</h3><h4 id="设计思路-2"><a href="#设计思路-2" class="headerlink" title="设计思路"></a>设计思路</h4><p>模型不需要知道”其他玩家在绝对坐标的哪里”，只需要知道”其他玩家相对于主玩家的位置”。</p>
+<h4 id="每个其他玩家的-11-维特征"><a href="#每个其他玩家的-11-维特征" class="headerlink" title="每个其他玩家的 11 维特征"></a>每个其他玩家的 11 维特征</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[0-2]   delta_x/y/z       → 相对坐标 (other_pos - main_pos)</span><br><span class="line">[3]     dist              → 欧氏距离</span><br><span class="line">[4-7]   yaw_sin/cos, pitch_sin/cos  → 其他玩家的朝向</span><br><span class="line">[8]     aim_lock          → 准星锁定度 (主玩家相机方向 vs 敌人方向 的夹角)</span><br><span class="line">[9]     visibility        → 射线可见性</span><br><span class="line">[10]    is_teammate       → 是否同队 (1.0=同队, 0.0=不同队)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Top-N-玩家选择"><a href="#Top-N-玩家选择" class="headerlink" title="Top-N 玩家选择"></a>Top-N 玩家选择</h4><ul>
+<li><strong>为什么选 Top-10</strong>：粥一局游戏一般是5-8个队伍，满编队伍3个人，也有单三的大手子，但是一般影响交战决策的只有最近的几队，因此选择最近的 10 个已经覆盖所有相关交互</li>
+<li><strong>按距离排序</strong>：Cross-Attention 的位置编码假设近的玩家更重要</li>
+<li><strong>Padding Mask</strong>：不足 10 个玩家的位置标记为 True (填充)</li>
+</ul>
+<hr>
+<h2 id="三、模型架构设计"><a href="#三、模型架构设计" class="headerlink" title="三、模型架构设计"></a>三、模型架构设计</h2><h3 id="3-1-整体架构"><a href="#3-1-整体架构" class="headerlink" title="3.1 整体架构"></a>3.1 整体架构</h3><p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/../images/tx_ai.png"></p>
+<h3 id="3-2-模块设计思路"><a href="#3-2-模块设计思路" class="headerlink" title="3.2 模块设计思路"></a>3.2 模块设计思路</h3><h4 id="A-Cross-Attention-Interaction"><a href="#A-Cross-Attention-Interaction" class="headerlink" title="A. Cross-Attention Interaction"></a>A. Cross-Attention Interaction</h4><p><strong>为什么用 Cross-Attention？</strong></p>
+<ul>
+<li>主玩家与其他玩家的交互不是简单的拼接，而是<strong>主玩家主动”关注”周围玩家</strong></li>
+<li>Query &#x3D; 主玩家，Key&#x2F;Value &#x3D; 其他玩家</li>
+<li>模型学习到：当准星锁定某个玩家时 (aim_lock 高)，该玩家应该获得更高 attention weight</li>
+</ul>
+<p><strong>距离位置编码</strong>：</p>
+<ul>
+<li>第 i 近的玩家有特定的 embedding</li>
+<li><strong>为什么</strong>：最近的玩家 (索引0) 通常比远处的玩家更重要，位置编码让模型学习到这种层次关系</li>
+</ul>
+<h4 id="B-Bi-GRU-Temporal-Attention"><a href="#B-Bi-GRU-Temporal-Attention" class="headerlink" title="B. Bi-GRU + Temporal Attention"></a>B. Bi-GRU + Temporal Attention</h4><p><strong>为什么用 GRU 而不是 Transformer？</strong></p>
+<ul>
+<li>处理后的时序长度只有 400，GRU 已经足够捕获短期依赖</li>
+<li>参数量更少，训练更快，在时间有限的客观现实上可以更快得到结果并根据结果再多做一些调优</li>
+<li>GRU 的门控机制天然适合处理时序上的”开镜→开火”这样的序贯行为</li>
+</ul>
+<p><strong>Temporal Self-Attention</strong>：</p>
+<ul>
+<li>让模型学习到”关键时刻”（如 t&#x3D;18-20s 的决策点）</li>
+<li>与 GRU 结合，既有时序记忆又有关键帧关注</li>
+</ul>
+<h4 id="C-全局池化-双头输出"><a href="#C-全局池化-双头输出" class="headerlink" title="C. 全局池化 + 双头输出"></a>C. 全局池化 + 双头输出</h4><p><strong>为什么用 Last + Mean 池化？</strong></p>
+<ul>
+<li>Last 捕获最终决策状态</li>
+<li>Mean 捕获整个时间序列的平均行为</li>
+<li>两者拼接 (1024 维) 提供更全面的上下文信息</li>
+</ul>
+<p><strong>为什么有 Group Head？</strong></p>
+<ul>
+<li>辅助任务：预测玩家群体 (0-3)</li>
+<li><strong>为什么</strong>：不同群体的行为模式不同（跑刀的优先摸东西，挂哥和护航直接战斗爽），多任务学习帮助主任务学习更好的特征表示</li>
+<li>权重较低 (0.2)，不干扰主任务</li>
+</ul>
+<hr>
+<h2 id="四、训练策略设计"><a href="#四、训练策略设计" class="headerlink" title="四、训练策略设计"></a>四、训练策略设计</h2><h3 id="4-1-类别不平衡处理"><a href="#4-1-类别不平衡处理" class="headerlink" title="4.1 类别不平衡处理"></a>4.1 类别不平衡处理</h3><h4 id="WeightedRandomSampler-数据层面"><a href="#WeightedRandomSampler-数据层面" class="headerlink" title="WeightedRandomSampler (数据层面)"></a>WeightedRandomSampler (数据层面)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 样本权重 = 1 / sqrt(类别频率)</span></span><br><span class="line">class_weights = <span class="number">1.0</span> / class_counts</span><br><span class="line">sample_weights = [class_weights[class_id] <span class="keyword">for</span> each sample]</span><br><span class="line">sampler = WeightedRandomSampler(sample_weights, num_samples=N, replacement=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么用采样而不是 Loss 加权？</strong></p>
+<ul>
+<li>采样让每个 batch 看到均衡的类别分布</li>
+<li>模型学习时不会被少数类主导梯度</li>
+<li>配合标准 CrossEntropyLoss 即可，不需要复杂 Loss 设计</li>
+</ul>
+<h4 id="为什么不使用-Focal-Loss-CB-Loss？"><a href="#为什么不使用-Focal-Loss-CB-Loss？" class="headerlink" title="为什么不使用 Focal Loss &#x2F; CB Loss？"></a>为什么不使用 Focal Loss &#x2F; CB Loss？</h4><ul>
+<li>过采样已经在数据层面解决了类别不平衡</li>
+<li>再加权重会导致少数类的梯度过大，模型可能会过度拟合</li>
+</ul>
+<h3 id="4-2-训练配置"><a href="#4-2-训练配置" class="headerlink" title="4.2 训练配置"></a>4.2 训练配置</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Batch Size</td>
+<td>64</td>
+<td>平衡训练速度和显存占用</td>
+</tr>
+<tr>
+<td>Learning Rate</td>
+<td>3e-4</td>
+<td>适中，配合 Cosine 衰减</td>
+</tr>
+<tr>
+<td>Weight Decay</td>
+<td>0.01</td>
+<td>防止过拟合</td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td>0.3</td>
+<td>正则化</td>
+</tr>
+<tr>
+<td>Epochs</td>
+<td>60</td>
+<td>足够收敛，早停防止过拟合</td>
+</tr>
+<tr>
+<td>Patience</td>
+<td>15</td>
+<td>给模型足够时间找到最优解</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-模型保存策略"><a href="#4-3-模型保存策略" class="headerlink" title="4.3 模型保存策略"></a>4.3 模型保存策略</h3><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>保存条件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>best_loss.pth</code></td>
+<td>Val Loss 最低</td>
+<td>最佳泛化性能</td>
+</tr>
+<tr>
+<td><code>best_recall.pth</code></td>
+<td>Val Macro Recall 最高</td>
+<td>最佳少数类识别</td>
+</tr>
+<tr>
+<td><code>checkpoint.pth</code></td>
+<td>每个 epoch (覆盖)</td>
+<td>断点续训</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、评估与预测设计"><a href="#五、评估与预测设计" class="headerlink" title="五、评估与预测设计"></a>五、评估与预测设计</h2><h3 id="5-1-评估模式-evaluate-py"><a href="#5-1-评估模式-evaluate-py" class="headerlink" title="5.1 评估模式 (evaluate.py)"></a>5.1 评估模式 (evaluate.py)</h3><p><strong>用途</strong>：在分割好的有答案的测试集 (<code>data/test_files.txt</code>) 上计算准确率、召回率</p>
+<p><strong>输出指标</strong>：</p>
+<ul>
+<li>总体准确率 (Top-1 Accuracy)</li>
+<li>宏平均召回率 (Macro Recall)</li>
+<li>每个类别的 Precision&#x2F;Recall&#x2F;F1</li>
+<li>意图决策准确率 (交战 vs 避战)</li>
+</ul>
+<h3 id="5-2-预测模式-predict-py"><a href="#5-2-预测模式-predict-py" class="headerlink" title="5.2 预测模式 (predict.py)"></a>5.2 预测模式 (predict.py)</h3><p><strong>用途</strong>：对无答案的目标数据 <code>data/1000_test</code> 生成提交文件</p>
+<p><strong>输出格式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">题目序号  意图决策  动作行为</span><br><span class="line">1        交战      Fire</span><br><span class="line">2        避战      Looting</span><br><span class="line">3        交战      Action</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><h3 id="6-1-为什么这些特征有效？"><a href="#6-1-为什么这些特征有效？" class="headerlink" title="6.1 为什么这些特征有效？"></a>6.1 为什么这些特征有效？</h3><table>
+<thead>
+<tr>
+<th>特征</th>
+<th>作用</th>
+<th>提升的类别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>scope_state</code></td>
+<td>开镜(1)&#x2F;关镜(0) 直接信号</td>
+<td>Action ↑↑</td>
+</tr>
+<tr>
+<td><code>ray_visibility</code></td>
+<td>准星是否对准敌人</td>
+<td>Fire ↑↑</td>
+</tr>
+<tr>
+<td><code>fov</code> 缩小</td>
+<td>开镜时视野变小</td>
+<td>Action ↑</td>
+</tr>
+<tr>
+<td><code>is_teammate</code></td>
+<td>其他玩家是否同队</td>
+<td>BeingResuce ↑↑</td>
+</tr>
+<tr>
+<td><code>aim_lock</code></td>
+<td>主玩家准星锁定度</td>
+<td>Fire&#x2F;Grenade ↑</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-为什么这些架构有效？"><a href="#6-2-为什么这些架构有效？" class="headerlink" title="6.2 为什么这些架构有效？"></a>6.2 为什么这些架构有效？</h3><table>
+<thead>
+<tr>
+<th>模块</th>
+<th>作用</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cross-Attention</td>
+<td>主玩家 vs 其他玩家交互</td>
+<td>区分”对敌开火”和”救援队友”</td>
+</tr>
+<tr>
+<td>Bi-GRU</td>
+<td>时序建模</td>
+<td>捕获”开镜→开火”的序贯行为</td>
+</tr>
+<tr>
+<td>Temporal Attention</td>
+<td>关键时刻关注</td>
+<td>忽略无关时间步，专注 t&#x3D;18-20s</td>
+</tr>
+<tr>
+<td>Top-N 玩家选择</td>
+<td>减少冗余</td>
+<td>只关注最近的 10 个玩家</td>
+</tr>
+</tbody></table>
+<h3 id="6-3-为什么这些训练策略有效？"><a href="#6-3-为什么这些训练策略有效？" class="headerlink" title="6.3 为什么这些训练策略有效？"></a>6.3 为什么这些训练策略有效？</h3><table>
+<thead>
+<tr>
+<th>策略</th>
+<th>作用</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WeightedRandomSampler</td>
+<td>均衡 batch 分布</td>
+<td>Fire 51% vs BeingResuce 0.5%</td>
+</tr>
+<tr>
+<td>Dropout 0.3</td>
+<td>防止过拟合</td>
+<td>5.9M 参数 vs 173K 样本</td>
+</tr>
+<tr>
+<td>Cosine Annealing LR</td>
+<td>平滑收敛</td>
+<td>避免学习率突变导致的震荡</td>
+</tr>
+<tr>
+<td>双模型保存</td>
+<td>不同最优标准</td>
+<td>Loss最低 vs Recall最高</td>
+</tr>
+</tbody></table>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/12/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2026-04-14 15:00:55
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2026/04/19/%E8%85%BE%E8%AE%AFai%E5%AE%89%E5%85%A8-%E5%86%B3%E8%B5%9B/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A1%8C%E4%B8%BA%E9%A2%84%E6%B5%8B%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6-%E6%8A%80%E6%9C%AF%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3"><span class="toc-text">游戏行为预测训练框架 - 技术设计文档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-text">一、项目概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BB%BB%E5%8A%A1%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 任务定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE%E8%A7%84%E6%A8%A1"><span class="toc-text">1.2 数据规模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E9%9A%BE%E7%82%B9"><span class="toc-text">1.3 核心难点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="toc-text">二、数据预处理设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-text">2.1 三级缓存策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">实现细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%A7%A3%E6%9E%90%E5%99%A8-GameLogParser"><span class="toc-text">2.2 解析器 (GameLogParser)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E8%AF%86%E5%88%AB"><span class="toc-text">数据格式识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%E5%86%B3%E7%AD%96"><span class="toc-text">关键设计决策</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%97%B6%E5%BA%8F%E9%87%8D%E9%87%87%E6%A0%B7-20Hz-%E5%9B%BA%E5%AE%9A%E9%A2%91%E7%8E%87"><span class="toc-text">2.3 时序重采样 (20Hz 固定频率)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF-1"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-text">实现方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E7%A9%BA%E9%97%B4%E7%89%B9%E5%BE%81%E8%AE%A1%E7%AE%97-%E7%9B%B8%E5%AF%B9%E7%89%B9%E5%BE%81"><span class="toc-text">2.4 空间特征计算 (相对特征)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF-2"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E5%85%B6%E4%BB%96%E7%8E%A9%E5%AE%B6%E7%9A%84-11-%E7%BB%B4%E7%89%B9%E5%BE%81"><span class="toc-text">每个其他玩家的 11 维特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Top-N-%E7%8E%A9%E5%AE%B6%E9%80%89%E6%8B%A9"><span class="toc-text">Top-N 玩家选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">三、模型架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">3.1 整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">3.2 模块设计思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Cross-Attention-Interaction"><span class="toc-text">A. Cross-Attention Interaction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Bi-GRU-Temporal-Attention"><span class="toc-text">B. Bi-GRU + Temporal Attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%E5%85%A8%E5%B1%80%E6%B1%A0%E5%8C%96-%E5%8F%8C%E5%A4%B4%E8%BE%93%E5%87%BA"><span class="toc-text">C. 全局池化 + 双头输出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5%E8%AE%BE%E8%AE%A1"><span class="toc-text">四、训练策略设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E5%A4%84%E7%90%86"><span class="toc-text">4.1 类别不平衡处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WeightedRandomSampler-%E6%95%B0%E6%8D%AE%E5%B1%82%E9%9D%A2"><span class="toc-text">WeightedRandomSampler (数据层面)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8-Focal-Loss-CB-Loss%EF%BC%9F"><span class="toc-text">为什么不使用 Focal Loss &#x2F; CB Loss？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%AE%AD%E7%BB%83%E9%85%8D%E7%BD%AE"><span class="toc-text">4.2 训练配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-text">4.3 模型保存策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%A2%84%E6%B5%8B%E8%AE%BE%E8%AE%A1"><span class="toc-text">五、评估与预测设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%BC%8F-evaluate-py"><span class="toc-text">5.1 评估模式 (evaluate.py)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%BC%8F-predict-py"><span class="toc-text">5.2 预测模式 (predict.py)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">六、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%BA%9B%E7%89%B9%E5%BE%81%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-text">6.1 为什么这些特征有效？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%BA%9B%E6%9E%B6%E6%9E%84%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-text">6.2 为什么这些架构有效？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%BA%9B%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-text">6.3 为什么这些训练策略有效？</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8AI%E6%96%B9%E5%90%91 + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2026%2F04%2F14%2F%25E8%2585%25BE%25E8%25AE%25AFai%25E5%25AE%2589%25E5%2585%25A8%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2026/04/14/%E8%85%BE%E8%AE%AFai%E5%AE%89%E5%85%A8/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

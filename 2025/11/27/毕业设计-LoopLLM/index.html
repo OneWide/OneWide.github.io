@@ -13,7 +13,7 @@
   
   <title>
     
-      Tag 
+      毕业设计-LoopLLM 
       
       
       |
@@ -146,21 +146,141 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI-for-security/" rel="tag">AI for security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" rel="tag">固件漏洞挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" rel="tag">大模型元认知</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E7%A0%94/" rel="tag">调研</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">毕业设计-LoopLLM</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2025-11-27 10:31:16
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>全文来自于notebooklm</p>
+</blockquote>
+<p>这是一个关于 <strong>LoopLLM</strong> 框架的全面解读，LoopLLM 是一种旨在诱导大型语言模型（LLMs）进行重复生成，从而最大化其能量消耗和推理延迟的攻击框架。</p>
+<h3 id="1-攻击背景与动机"><a href="#1-攻击背景与动机" class="headerlink" title="1. 攻击背景与动机"></a>1. 攻击背景与动机</h3><p>LLMs 在实际应用中取得了显著成就，但其日益增长的规模对计算资源提出了巨大要求。有研究表明，LLM 整个生命周期中，仅推理阶段的能耗就占了 **高达 90%**。这种对推理效率的依赖性，使得系统可用性（Availability）成为安全三要素中一个被忽视的关键问题。攻击者可以利用 LLM 推理效率低下的弱点，故意增加计算和能量成本。</p>
+<p><strong>现有方法的局限性:</strong></p>
+<p>传统的能量-延迟攻击（Energy-Latency Attacks）主要依赖于延迟 <strong>序列结束符号 (EOS token)</strong> 的生成来延长输出长度。然而，这种策略存在两个主要限制：</p>
+<ol>
+<li><strong>有效性有限：</strong> 随着输出变长，仅通过输入来抑制 EOS token 变得困难，导致生成过程容易提前终止。</li>
+<li><strong>可转移性差：</strong> 现有方法通常基于白盒设置下的梯度优化，容易对源模型过度拟合，从而在黑盒（未见）目标模型上的实用性受到限制。</li>
+</ol>
+<p>LoopLLM 框架正是为解决这些限制而提出的。</p>
+<h3 id="2-LoopLLM-的核心机制：低熵循环"><a href="#2-LoopLLM-的核心机制：低熵循环" class="headerlink" title="2. LoopLLM 的核心机制：低熵循环"></a>2. LoopLLM 的核心机制：低熵循环</h3><p>LoopLLM 的核心思想是利用 LLMs 的 <strong>自回归漏洞 (autoregressive vulnerabilities)</strong> ，通过诱导 <strong>重复生成 (repetitive generation)</strong> ，使模型陷入 <strong>低熵解码循环 (low-entropy decoding loops)</strong> ，从而可靠地强制模型生成直到达到最大输出长度限制。</p>
+<ul>
+<li><strong>自回归漏洞：</strong> LLMs 采用自回归机制，即每个 token 的生成都依赖于先前的上下文。一旦模型开始生成重复内容，这种机制就会强化重复，将模型困在重复生成的循环中。</li>
+<li><strong>低熵的量化：</strong> 研究通过量化发现，当输入中重复片段的数量逐渐增加时，生成的 token 的 <strong>熵 (entropy)</strong> 会迅速收敛到低值（小于 0.05）。低熵表明模型的输出分布高度集中在一组 token 上，证实了低熵循环的形成是重复生成现象的根本机制。</li>
+<li><strong>指令对齐模型的挑战：</strong> 在对话场景中，指令对齐的 LLMs（Instruction-Aligned LLMs）通常使用聊天模板来区分用户输入和模型输出。如果重复片段仅存在于用户输入中，对齐良好的 LLMs 可能会将其视为不相关内容而忽略。因此，LoopLLM 旨在诱导模型不仅识别输入中的重复，更关键的是 <strong>在输出中重现重复内容</strong>，以利用自回归机制来强化重复行为。实验表明，在输出中引入少量重复，能迅速将熵降低到接近零的水平。</li>
+</ul>
+<h3 id="3-LoopLLM-框架的组成部分"><a href="#3-LoopLLM-框架的组成部分" class="headerlink" title="3. LoopLLM 框架的组成部分"></a>3. LoopLLM 框架的组成部分</h3><p>LoopLLM 框架包含两个核心组件，用于增强攻击的有效性和跨模型可转移性：</p>
+<h4 id="I-Repetition-Inducing-Prompt-Optimization-重复诱导提示优化"><a href="#I-Repetition-Inducing-Prompt-Optimization-重复诱导提示优化" class="headerlink" title="I. Repetition-Inducing Prompt Optimization (重复诱导提示优化)"></a>I. Repetition-Inducing Prompt Optimization (重复诱导提示优化)</h4><p>该组件用于迭代优化对抗性后缀，以触发重复生成：</p>
+<ol>
+<li><strong>初始化：</strong> 攻击从初始化一个对抗性后缀 $x_s$ 开始，该后缀由一个短 token 序列（称为 <strong>循环片段</strong>，cyclic segment）重复多次构成。</li>
+<li><strong>循环损失 ($\mathcal{L}_{cycle}$)：</strong> 引入循环损失来优化对抗性后缀。该损失是一种 **非定向目标 (untargeted objective)**，旨在鼓励模型在 <strong>每个输出位置</strong> 重现循环片段中的 token，从而将生成过程导向低熵循环。<ul>
+<li><strong>目标：</strong> 最大化循环片段中 token 在每个输出位置的预测概率。</li>
+</ul>
+</li>
+<li><strong>基于梯度的 Token 搜索：</strong> 由于后缀是离散的，无法使用标准梯度下降。LoopLLM 采用基于梯度的 token 搜索策略，通过计算所有 token 的梯度，选择能够最大限度降低损失的单 token 替换，进行迭代优化。</li>
+</ol>
+<h4 id="II-Token-Aligned-Ensemble-Optimization-Token-对齐集成优化"><a href="#II-Token-Aligned-Ensemble-Optimization-Token-对齐集成优化" class="headerlink" title="II. Token-Aligned Ensemble Optimization (Token 对齐集成优化)"></a>II. Token-Aligned Ensemble Optimization (Token 对齐集成优化)</h4><p>该组件用于增强对抗性提示的跨模型可转移性：</p>
+<ul>
+<li><strong>集成优化：</strong> LoopLLM 利用 $M$ 个替代模型（surrogate models）的集成来更新后缀。</li>
+<li><strong>梯度聚合：</strong> 通过聚合来自多个替代模型的梯度来更新后缀。通过聚合梯度，该方法优先选择在不同 LLMs 之间均有效的 token 替换，从而发现更具通用性和鲁棒性的对抗性提示。</li>
+<li><strong>Token 对齐要求：</strong> 为确保梯度聚合的有效性，所有替代模型必须  **共享相同的分词器(tokenizer)**，以保证 one-hot 向量在维度和 token-到-索引映射上保持对齐。</li>
+<li><strong>黑盒攻击：</strong> 这种集成方法有助于减轻对单个模型的过度拟合，确保对抗性提示在迁移到看不见的黑盒模型时也能有效触发重复生成。</li>
+</ul>
+<h3 id="4-攻击有效性与鲁棒性"><a href="#4-攻击有效性与鲁棒性" class="headerlink" title="4. 攻击有效性与鲁棒性"></a>4. 攻击有效性与鲁棒性</h3><p>在 12 个开源 LLMs 和 2 个商业 LLMs 上进行的实验证明了 LoopLLM 的优越性。</p>
+<ul>
+<li><strong>白盒设置下的卓越性能：</strong> LoopLLM 在大多数模型上实现了 <strong>超过 90%</strong> 的最大输出长度（平均输出长度 Avg-len）和攻击成功率 (ASR)，而基线方法 ASR 仅约为 20%。</li>
+<li><strong>变体对比：</strong><ul>
+<li><strong>LoopLLM-t</strong> (token 级重复，如 ‘*’) 在没有防御的情况下表现最佳。</li>
+<li>然而，如果启用简单防御措施（例如，检测连续重复 token 并停止生成），LoopLLM-t 的有效性会显著下降。</li>
+<li><strong>LoopLLM-p</strong> (短语级重复，如 ‘* % &amp; @ #’) 在启用此类防御时几乎不受影响，表明短语级重复 <strong>更难被检测且更具鲁棒性</strong>。</li>
+</ul>
+</li>
+<li><strong>强大的可转移性：</strong> 经集成优化后的提示，对黑盒商业模型展现出强大的转移能力。它在 <strong>Deepseek-V3</strong> 上实现了 <strong>43%</strong> 的最大允许长度 ASR，在 <strong>Gemini 2.5 Flash</strong> 上实现了 <strong>37%</strong> 的 ASR，相比基线方法提升了约 40%。</li>
+</ul>
+<h3 id="5-对策分析与抵抗力"><a href="#5-对策分析与抵抗力" class="headerlink" title="5. 对策分析与抵抗力"></a>5. 对策分析与抵抗力</h3><p>LoopLLM 对几种常用的潜在防御措施具有内在的抵抗力：</p>
+<ul>
+<li><strong>抵抗 PPL 过滤：</strong> 困惑度（Perplexity, PPL）过滤常用于检测语义不连贯的对抗性输入。然而，LoopLLM 对基于 PPL 的过滤具有 <strong>内在抵抗力</strong>。尽管 LoopLLM 的后缀是无意义的，但由于其重复模式将模型导向低熵循环，模型对后续 token 的预测表现出高置信度，导致其 PPL 值较低，甚至 <strong>低于正常输入</strong> 的 PPL。</li>
+<li><strong>输出熵监测 (Output Entropy Monitoring)：</strong> 监测输出熵被认为是一种潜在的有效对策。当模型输出熵稳定在低阈值时停止生成。实验证实 LoopLLM 产生的输出熵确实低于正常输入和基线方法。然而，这种防御需要实时跟踪熵，这会带来 <strong>巨大的计算开销</strong>。</li>
+</ul>
+<p>LoopLLM 通过利用 LLMs 自回归机制的固有弱点，实现了比传统 EOS 延迟攻击更可靠、更具转移性的能量-延迟攻击。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/11/16/Fuzz4All/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2025-11-27 10:31:16
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/12/25/Activations/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%94%BB%E5%87%BB%E8%83%8C%E6%99%AF%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="toc-text">1. 攻击背景与动机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-LoopLLM-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%EF%BC%9A%E4%BD%8E%E7%86%B5%E5%BE%AA%E7%8E%AF"><span class="toc-text">2. LoopLLM 的核心机制：低熵循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LoopLLM-%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">3. LoopLLM 框架的组成部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#I-Repetition-Inducing-Prompt-Optimization-%E9%87%8D%E5%A4%8D%E8%AF%B1%E5%AF%BC%E6%8F%90%E7%A4%BA%E4%BC%98%E5%8C%96"><span class="toc-text">I. Repetition-Inducing Prompt Optimization (重复诱导提示优化)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#II-Token-Aligned-Ensemble-Optimization-Token-%E5%AF%B9%E9%BD%90%E9%9B%86%E6%88%90%E4%BC%98%E5%8C%96"><span class="toc-text">II. Token-Aligned Ensemble Optimization (Token 对齐集成优化)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%94%BB%E5%87%BB%E6%9C%89%E6%95%88%E6%80%A7%E4%B8%8E%E9%B2%81%E6%A3%92%E6%80%A7"><span class="toc-text">4. 攻击有效性与鲁棒性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AF%B9%E7%AD%96%E5%88%86%E6%9E%90%E4%B8%8E%E6%8A%B5%E6%8A%97%E5%8A%9B"><span class="toc-text">5. 对策分析与抵抗力</span></a></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
-  
 
-  
 
-  
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
@@ -424,12 +544,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + http%3A%2F%2Flocalhost%3A4000%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-LoopLLM + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2025%2F11%2F27%2F%25E6%25AF%2595%25E4%25B8%259A%25E8%25AE%25BE%25E8%25AE%25A1-LoopLLM%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/tags/index.html" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2025/11/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-LoopLLM/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

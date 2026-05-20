@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="John Doe" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  
+  
+  <title>
+    
+      动手学AI-基本知识点 
+      
+      
+      |
+    
+     Wide1k
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img no-lazy src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Wide1k</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">动手学AI-基本知识点</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2025-10-27 14:27:27
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/AI/" title="AI">
+                    #AI
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习">
+                    #机器学习
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><h2 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h2><p>过拟合就是在训练数据集上训练的“太好”，而不适用于其他的大型真实数据集。<br>即如果有足够多的神经元、层数和训练迭代周期， 模型最终可以在训练集上达到完美的精度，此时测试集的准确性却下降了。</p>
+<p>欠拟合就是训练误差和验证误差都比较大而且二者之间的差距很小，这就代表模型的表达能力不足，仍需要训练一个更复杂的模型。</p>
+<h2 id="训练误差和泛化误差"><a href="#训练误差和泛化误差" class="headerlink" title="训练误差和泛化误差"></a>训练误差和泛化误差</h2><p>训练误差（training error）是指， 模型在训练数据集上计算得到的误差。 泛化误差（generalization error）是指， 模型应用在同样从原始样本的分布中抽取的无限多数据样本时，模型误差的期望。</p>
+<p>泛化误差是无法被精确计算出来的，因为无限多数据样本不可能供我们使用，这是一个虚拟的对象，因此只能用一个独立的测试机来估计。</p>
+<h2 id="模型复杂性"><a href="#模型复杂性" class="headerlink" title="模型复杂性"></a>模型复杂性</h2><p>这是一个比较难定义的东西，可能是参数更多的模型更复杂，也可能是迭代更多次的模型更复杂，也会是训练样本的数量越大越复杂。</p>
+<h2 id="验证集-测试集"><a href="#验证集-测试集" class="headerlink" title="验证集&amp;测试集"></a>验证集&amp;测试集</h2><p>二者之间的关系非常模糊，因为理论上我们希望测试集能一下测试完模型的误差，这样就能保证独立同分布，但是在实际操作中，因为模型需要不断迭代，每一轮都要用测试集来更新，因此验证集这个概念就被提出，但是他俩还是很难界定，教程里的准确度都用验证集准确度测定。</p>
+<h2 id="K折交叉验证"><a href="#K折交叉验证" class="headerlink" title="K折交叉验证"></a>K折交叉验证</h2><p>把原始训练数据分为K个不重叠的子集，执行K此训练和验证，每次在K-1个子集上进行训练，在剩余的一个子集上验证，最后对K次实验结果取平均来估计误差。</p>
+<h2 id="权重衰减"><a href="#权重衰减" class="headerlink" title="权重衰减"></a>权重衰减</h2><p>一种正则化技术 (${L^2}$ 正则化,又叫岭回归算法)。</p>
+<p>这种算法对权重向量的大分量做出巨大惩罚，使得我们的学习算法偏向于大量特征上更均匀分布的权重的模型。而${L_1}$算法则是会把权重集中在一小部分特征上，而把其他的权重清为0，这是特征选择。</p>
+<p>为啥是权重衰退呢，首先加上罚项之后，计算梯度时应该是：</p>
+<p>$\frac{\partial}{\partial w} \left( \ell(w, b) + \frac{\lambda}{2} |w|^2 \right) &#x3D; \frac{\partial \ell(w, b)}{\partial w} + \lambda w$</p>
+<p>根据权重更新的计算公式，有</p>
+<p>$\mathbf{w}_{t+1} &#x3D; \mathbf{w}_t - \eta \frac{\partial}{\partial\mathbf{w_t}}$</p>
+<p>等于是</p>
+<p>$\mathbf{w}_{t+1} &#x3D; (1-\eta\lambda)\mathbf{w}_t - \eta\frac{\partial\mathcal{E}(\mathbf{w}_t, b_t)}{\partial\mathbf{w}_t}$</p>
+<p>$\eta\lambda$一般是小于1的，每次都把$\mathbf{w}_t$放小一次，因此叫做权重衰减</p>
+<h2 id="暂退法"><a href="#暂退法" class="headerlink" title="暂退法"></a>暂退法</h2><p>训练过程中，在计算后续层之前向网络的每一层注入噪声，当训练一个有多层深层网络时，注入噪声只会在输入-输出映射上增加平滑性，这就是暂退法。</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/../images/dropout.png"><br>如图，隐藏层的单元有p的概率会被丢弃，余下的保留</p>
+<h1 id="模型优化"><a href="#模型优化" class="headerlink" title="模型优化"></a>模型优化</h1><h2 id="梯度爆炸和消失"><a href="#梯度爆炸和消失" class="headerlink" title="梯度爆炸和消失"></a>梯度爆炸和消失</h2><p>当神经网络层数比较大时，层数${L}$的神经网络的梯度是一个${L-1}$层矩阵与梯度向量的乘积，这样数值就会发生较大的变化，包括梯度爆炸和消失。</p>
+<p>要么是梯度爆炸的问题：当参数更新过大， 破坏了模型的稳定收敛； 要么是梯度消失（gradient vanishing）问题： 参数更新过小，在每次更新时几乎不会移动，导致模型无法学习。</p>
+<h2 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h2><p>在一个合理的区间随机初始化参数，训练开始的时候更容易有数值不稳定，因为原理最优解的地方损失函数表面可能很复杂（这里想象爬山的山坡），而最优解的附近表面会比较平滑。</p>
+<p>选择合理的权重初始值和激活函数可以提高数值稳定性。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"><span class="keyword">from</span> anthropic <span class="keyword">import</span> Anthropic</span><br><span class="line"><span class="keyword">import</span> google.generativeai <span class="keyword">as</span> genai</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line"><span class="comment"># 固定模型配置（按你要求）</span></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line">MODELS = &#123;</span><br><span class="line">    <span class="string">&quot;1&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;GPT-5&quot;</span>, <span class="string">&quot;provider&quot;</span>: <span class="string">&quot;openai&quot;</span>, <span class="string">&quot;model&quot;</span>: <span class="string">&quot;gpt-5&quot;</span>&#125;,</span><br><span class="line">    <span class="string">&quot;2&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Gemini 2.5&quot;</span>, <span class="string">&quot;provider&quot;</span>: <span class="string">&quot;google&quot;</span>, <span class="string">&quot;model&quot;</span>: <span class="string">&quot;gemini-2.5&quot;</span>&#125;,</span><br><span class="line">    <span class="string">&quot;3&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Claude 3.7&quot;</span>, <span class="string">&quot;provider&quot;</span>: <span class="string">&quot;anthropic&quot;</span>, <span class="string">&quot;model&quot;</span>: <span class="string">&quot;claude-3.7&quot;</span>&#125;,</span><br><span class="line">    <span class="string">&quot;4&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Grok 3&quot;</span>, <span class="string">&quot;provider&quot;</span>: <span class="string">&quot;xai&quot;</span>, <span class="string">&quot;model&quot;</span>: <span class="string">&quot;grok-3&quot;</span>&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line"><span class="comment"># API 客户端初始化</span></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line">clients = &#123;&#125;</span><br><span class="line"><span class="keyword">if</span> os.getenv(<span class="string">&quot;OPENAI_API_KEY&quot;</span>):</span><br><span class="line">    clients[<span class="string">&quot;openai&quot;</span>] = OpenAI(api_key=os.getenv(<span class="string">&quot;OPENAI_API_KEY&quot;</span>))</span><br><span class="line"><span class="keyword">if</span> os.getenv(<span class="string">&quot;ANTHROPIC_API_KEY&quot;</span>):</span><br><span class="line">    clients[<span class="string">&quot;anthropic&quot;</span>] = Anthropic(api_key=os.getenv(<span class="string">&quot;ANTHROPIC_API_KEY&quot;</span>))</span><br><span class="line"><span class="keyword">if</span> os.getenv(<span class="string">&quot;GOOGLE_API_KEY&quot;</span>):</span><br><span class="line">    genai.configure(api_key=os.getenv(<span class="string">&quot;GOOGLE_API_KEY&quot;</span>))</span><br><span class="line">    clients[<span class="string">&quot;google&quot;</span>] = genai</span><br><span class="line"><span class="keyword">if</span> os.getenv(<span class="string">&quot;XAI_API_KEY&quot;</span>):</span><br><span class="line">    clients[<span class="string">&quot;xai&quot;</span>] = OpenAI(api_key=os.getenv(<span class="string">&quot;XAI_API_KEY&quot;</span>),</span><br><span class="line">                            base_url=<span class="string">&quot;https://api.x.ai/v1&quot;</span>)</span><br><span class="line"></span><br><span class="line">chat_history = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ask</span>(<span class="params">provider, model, message</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;统一对话方法&quot;&quot;&quot;</span></span><br><span class="line">    chat_history.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: message&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> provider <span class="keyword">in</span> [<span class="string">&quot;openai&quot;</span>, <span class="string">&quot;xai&quot;</span>]:</span><br><span class="line">        res = clients[provider].chat.completions.create(</span><br><span class="line">            model=model,</span><br><span class="line">            messages=chat_history,</span><br><span class="line">        )</span><br><span class="line">        reply = res.choices[<span class="number">0</span>].message.content</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> provider == <span class="string">&quot;anthropic&quot;</span>:</span><br><span class="line">        res = clients[<span class="string">&quot;anthropic&quot;</span>].messages.create(</span><br><span class="line">            model=model,</span><br><span class="line">            max_tokens=<span class="number">2000</span>,</span><br><span class="line">            messages=chat_history,</span><br><span class="line">        )</span><br><span class="line">        reply = res.content[<span class="number">0</span>].text</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> provider == <span class="string">&quot;google&quot;</span>:</span><br><span class="line">        g_messages = [&#123;<span class="string">&quot;role&quot;</span>: m[<span class="string">&quot;role&quot;</span>], <span class="string">&quot;parts&quot;</span>: [&#123;<span class="string">&quot;text&quot;</span>: m[<span class="string">&quot;content&quot;</span>]&#125;]&#125; <span class="keyword">for</span> m <span class="keyword">in</span> chat_history]</span><br><span class="line">        model_obj = clients[<span class="string">&quot;google&quot;</span>].GenerativeModel(model)</span><br><span class="line">        res = model_obj.generate_content(g_messages)</span><br><span class="line">        reply = res.text</span><br><span class="line"></span><br><span class="line">    chat_history.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: reply&#125;)</span><br><span class="line">    <span class="keyword">return</span> reply</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line"><span class="comment"># 聊天入口</span></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;====== 选择模型 ======&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> MODELS.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;k&#125;</span>. <span class="subst">&#123;v[<span class="string">&#x27;name&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">choice = <span class="built_in">input</span>(<span class="string">&quot;请选择模型编号：&quot;</span>).strip()</span><br><span class="line">config = MODELS.get(choice)</span><br><span class="line">provider = config[<span class="string">&quot;provider&quot;</span>]</span><br><span class="line">model = config[<span class="string">&quot;model&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n✅ 已选择: <span class="subst">&#123;config[<span class="string">&#x27;name&#x27;</span>]&#125;</span> (<span class="subst">&#123;provider&#125;</span>)\n开始对话！（输入 exit 退出）\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = <span class="built_in">input</span>(<span class="string">&quot;你：&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> msg.lower() == <span class="string">&quot;exit&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;👋 再见&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        ans = ask(provider, model, msg)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;AI:&quot;</span>, ans)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;❌ API 异常：&quot;</span>, e)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/10/01/%E5%8A%A8%E6%89%8B%E5%AD%A6AI-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2025-10-27 14:27:27
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/AI/" title="AI">
+                        #AI
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习">
+                        #机器学习
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/10/20/%E8%B0%83%E7%A0%94-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="toc-text">过拟合和欠拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%AF%AF%E5%B7%AE%E5%92%8C%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE"><span class="toc-text">训练误差和泛化误差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-text">模型复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E9%9B%86-%E6%B5%8B%E8%AF%95%E9%9B%86"><span class="toc-text">验证集&amp;测试集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">K折交叉验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F"><span class="toc-text">权重衰减</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%82%E9%80%80%E6%B3%95"><span class="toc-text">暂退法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-text">模型优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E5%92%8C%E6%B6%88%E5%A4%B1"><span class="toc-text">梯度爆炸和消失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">权重初始化</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%8A%A8%E6%89%8B%E5%AD%A6AI-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9 + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2025%2F10%2F14%2F%25E5%258A%25A8%25E6%2589%258B%25E5%25AD%25A6AI-%25E5%259F%25BA%25E6%259C%25AC%25E7%259F%25A5%25E8%25AF%2586%25E7%2582%25B9%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2025/10/14/%E5%8A%A8%E6%89%8B%E5%AD%A6AI-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

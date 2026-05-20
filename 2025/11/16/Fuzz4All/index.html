@@ -13,7 +13,7 @@
   
   <title>
     
-      Tag 
+      Fuzz4All 
       
       
       |
@@ -146,21 +146,106 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI-for-security/" rel="tag">AI for security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" rel="tag">固件漏洞挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" rel="tag">大模型元认知</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E7%A0%94/" rel="tag">调研</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Fuzz4All</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2025-11-27 09:16:05
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="运行说明"><a href="#运行说明" class="headerlink" title="运行说明"></a>运行说明</h1><p>先简单且快速的过一遍这个东西的运行方法。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>按照requirement.txt下载，运行过程中肯定还有一些别的库没下载，查漏补缺的下就行。</p>
+<p><strong>原仓库其实给了一个完整版的Docker，如果本机算力够ollama的可以直接用那个试试，估计会简单些，服务器本身就是一个Docker（应该）所以我就没试再套一层</strong></p>
+<p>这里选择ollama的starcoder2-7B模型，在实验室服务器上没法直接挂梯子，所以得<strong>走一个共享网络连接本机的VPN</strong>来下载并运行模型。</p>
+<blockquote>
+<p>ssh -vvv -N -R 7890:localhost:7890 -p 40624 <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#49;&#55;&#x32;&#46;&#50;&#56;&#x2e;&#x37;&#46;&#x32;&#x33;">&#x72;&#111;&#111;&#116;&#64;&#49;&#55;&#x32;&#46;&#50;&#56;&#x2e;&#x37;&#46;&#x32;&#x33;</a></p>
+</blockquote>
+<p>路由器固件的架构和服务器的架构不同，一个时MIPS一个时x86，fuzz4all没法直接用原本的逻辑去运行固件，所以需要使用qemu仿真（但是仿真后也不是直接对其进行了测试，估计还要再做魔改），仿真的方法我直接按GPT给的走的，没有特别记，不是很麻烦。</p>
+<p>项目本身给的demo是一个&#x2F;gcc-13&#x2F;bin&#x2F;g++，想试的话需要使用源码下载gcc-13，到这里跑通这个代码问题就不大了，下面看看代码逻辑。</p>
+<h1 id="代码逻辑"><a href="#代码逻辑" class="headerlink" title="代码逻辑"></a>代码逻辑</h1><p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/../images/fuzz4all.png"><br>深入读了一下代码，发现论文中所说的对“二进制文件”进行fuzz测试，只是指对各类语言的编译器进行fuzz测试。</p>
+<p>代码有三种Prompt生成策略（生成新的、变异现有的、语义等效的）<br><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/../images/fuzz4all%E7%AD%96%E7%95%A5.png"></p>
+<p>总体的fuzz代码思想为：</p>
+<ul>
+<li>根据Target和三种策略生成fuzz input</li>
+<li>针对每一个fuzz input，根据配置文件转到对应的语言fuzz方法里，把生成的用于fuzz的代码以对应<strong>编译器</strong>进行编译，捕捉编译结果。</li>
+</ul>
+<p>总结：fuzz4all本身是直接生成语言对编译器进行fuzz，不能直接用在路由器固件上。但是这个逻辑是生成fuzz代码，理论上是能够修改配置文件拓展到HTTP访问请求，然后对路由器的httpd等web端生成payload，再自动化调用qemu和AFL++进行fuzz的，也需要LLM对解包后的路由器路径进行分析生成专门的payload。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/11/13/%E5%8F%AF%E8%A1%8C%E6%80%A7%E9%AA%8C%E8%AF%81/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2025-11-27 09:16:05
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/11/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-LoopLLM/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%AF%B4%E6%98%8E"><span class="toc-text">运行说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">环境搭建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91"><span class="toc-text">代码逻辑</span></a></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
-  
 
-  
 
-  
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
@@ -424,12 +509,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + http%3A%2F%2Flocalhost%3A4000%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Fuzz4All + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2025%2F11%2F16%2FFuzz4All%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/tags/index.html" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2025/11/16/Fuzz4All/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

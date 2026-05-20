@@ -13,7 +13,7 @@
   
   <title>
     
-      Tag 
+      论文阅读-LLMs as Firmware Experts 
       
       
       |
@@ -146,21 +146,144 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI-for-security/" rel="tag">AI for security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" rel="tag">固件漏洞挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" rel="tag">大模型元认知</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E7%A0%94/" rel="tag">调研</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">论文阅读-LLMs as Firmware Experts</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2025-12-29 15:35:48
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="论文阅读">
+                    #论文阅读
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="固件漏洞挖掘">
+                    #固件漏洞挖掘
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/AI-for-security/" title="AI for security">
+                    #AI for security
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>一个固件里可能有成百上千个文件，很难定位哪里有风险，且漏洞往往不是在一个文件里，而是涉及到多个文件的交互。<br>追踪一个漏洞需要多个文件和函数，过程非常长，自动化工具以及LLM很难跟踪</p>
+<h1 id="现有Agent问题"><a href="#现有Agent问题" class="headerlink" title="现有Agent问题"></a>现有Agent问题</h1><ul>
+<li>单Agent（可以视为LLM本身）：上下文窗口不够，记忆出现幻觉，思维链因为过长导致忘掉线索</li>
+<li>无协调的多Agent：只能获得广度，很难进行线索整合，深度推理链丢失。</li>
+<li>现有集中协调的多Agent：所有复杂度都在中央控制中心，容易上下文爆炸</li>
+</ul>
+<h1 id="论文创新机制"><a href="#论文创新机制" class="headerlink" title="论文创新机制"></a>论文创新机制</h1><h2 id="Delegation-as-an-Ability"><a href="#Delegation-as-an-Ability" class="headerlink" title="Delegation as an Ability"></a>Delegation as an Ability</h2><p>每一个agent都能把任务拆开，生成子 agent，等待子agent返回结果。</p>
+<h2 id="Tree-of-Agents（ToA）"><a href="#Tree-of-Agents（ToA）" class="headerlink" title="Tree of Agents（ToA）"></a>Tree of Agents（ToA）</h2><p>系统根据固件目录结构自动生成“代理树”<br><em>根代理先看整个固件，发现两个文件夹，就派生出两个“目录代理”；目录代理发现里面有文件，就再派生出“文件代理”；文件代理发现关键函数，再派生出“函数代理” 。</em></p>
+<h2 id="Persistent-Knowledge-Hub（PKH）"><a href="#Persistent-Knowledge-Hub（PKH）" class="headerlink" title="Persistent Knowledge Hub（PKH）"></a>Persistent Knowledge Hub（PKH）</h2><p>把所有Agent的证据型结论保存在全局知识库中，其他的任何Agent都能查询。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/12/25/Activations/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2025-12-29 15:35:48
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="论文阅读">
+                        #论文阅读
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="固件漏洞挖掘">
+                        #固件漏洞挖掘
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/AI-for-security/" title="AI for security">
+                        #AI for security
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2026/04/14/%E8%85%BE%E8%AE%AFai%E5%AE%89%E5%85%A8/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89Agent%E9%97%AE%E9%A2%98"><span class="toc-text">现有Agent问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E5%88%9B%E6%96%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">论文创新机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Delegation-as-an-Ability"><span class="toc-text">Delegation as an Ability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tree-of-Agents%EF%BC%88ToA%EF%BC%89"><span class="toc-text">Tree of Agents（ToA）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Persistent-Knowledge-Hub%EF%BC%88PKH%EF%BC%89"><span class="toc-text">Persistent Knowledge Hub（PKH）</span></a></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
-  
 
-  
 
-  
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
@@ -424,12 +547,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + http%3A%2F%2Flocalhost%3A4000%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-LLMs%20as%20Firmware%20Experts + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2025%2F12%2F29%2F%25E8%25AE%25BA%25E6%2596%2587%25E9%2598%2585%25E8%25AF%25BB-%25E6%25BC%258F%25E6%25B4%259E%25E6%258C%2596%25E6%258E%2598%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/tags/index.html" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2025/12/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="John Doe" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  
+  
+  <title>
+    
+      腾讯游戏安全AI方向 
+      
+      
+      |
+    
+     Wide1k
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img no-lazy src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Wide1k</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">腾讯游戏安全AI方向</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2026-04-19 23:43:56
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="基于Qwen微调与Agent优化的文本化游戏行为预测系统"><a href="#基于Qwen微调与Agent优化的文本化游戏行为预测系统" class="headerlink" title="基于Qwen微调与Agent优化的文本化游戏行为预测系统"></a>基于Qwen微调与Agent优化的文本化游戏行为预测系统</h1><h2 id="一、项目概述"><a href="#一、项目概述" class="headerlink" title="一、项目概述"></a>一、项目概述</h2><h3 id="1-1-任务定义"><a href="#1-1-任务定义" class="headerlink" title="1.1 任务定义"></a>1.1 任务定义</h3><p><strong>输入</strong>：20秒游戏日志（时间戳 + 玩家位置&#x2F;速度&#x2F;朝向&#x2F;状态等事件）<br><strong>输出</strong>：玩家在 t&#x3D;20s -25s 时的文本化行为描述</p>
+<ul>
+<li>即基于主玩家和周围5名玩家0-20秒的完整行为序列，预测主玩家未来5秒的关键动作，描述为自然语言</li>
+</ul>
+<h3 id="1-2-核心难点"><a href="#1-2-核心难点" class="headerlink" title="1.2 核心难点"></a>1.2 核心难点</h3><ul>
+<li><strong>文本化表示设计</strong>：原始数值序列 → 语义化文本，需保留战术信息且不损失精度</li>
+<li><strong>长时序依赖建模</strong>：20秒输入 → 5秒输出，需理解复杂战术演变</li>
+<li><strong>生成质量评估</strong>：开放式文本生成，无标准答案，需语义匹配</li>
+<li><strong>文本生成优化</strong>：结果文本具有随机性，如何优化输出的结果是一个问题</li>
+</ul>
+<hr>
+<h2 id="二、数据预处理设计"><a href="#二、数据预处理设计" class="headerlink" title="二、数据预处理设计"></a>二、数据预处理设计</h2><blockquote>
+<p>原始游戏数据（如坐标、速度向量）对 LLM 而言极度抽象。我们的核心思路是：将结构化的物理数据，转化为富有战术含义的自然语言描述。</p>
+</blockquote>
+<p>本阶段的目标是将原始的游戏日志文件（.txt）转化为可供大语言模型（LLM）理解的双序列语义化指令微调数据集。预处理流程涵盖了从原始坐标提取到战术意图生成的全过程。</p>
+<h3 id="2-1-原始数据解析与特征提取"><a href="#2-1-原始数据解析与特征提取" class="headerlink" title="2.1 原始数据解析与特征提取"></a>2.1 原始数据解析与特征提取</h3><p>系统首先对游戏日志进行流式解析，提取关键的物理与状态维度信息：</p>
+<ol>
+<li>空间坐标系统：提取三维坐标 $(x, y, z)$ 以及视角转角（Yaw&#x2F;Pitch），用于计算玩家间的相对方位。</li>
+<li>动力学状态：通过速度向量 $(vel_x, vel_y, vel_z)$ 计算瞬时速率，并将其映射为<strong>静止、慢速移动、快速移动、冲刺</strong>四种状态。</li>
+<li>交互状态：提取“开镜&#x2F;关镜”状态，作为判断战斗意图（瞄准 vs 搜索）的核心指标。</li>
+</ol>
+<h3 id="2-2-双序列战术语义化建模"><a href="#2-2-双序列战术语义化建模" class="headerlink" title="2.2 双序列战术语义化建模"></a>2.2 双序列战术语义化建模</h3><p>为了让模型掌握战场全局观，预处理设计了“主玩家序列”与“环境威胁序列”的协同表示法：</p>
+<ol>
+<li>主玩家行为序列 (0-20s)<ul>
+<li>采样策略：以 1 秒为粒度进行关键帧采样，平滑噪声数据。</li>
+<li>属性描述：记录每个时间点的移动状态、开镜状态及累计位移，形成如 T10s: 快速移动,开镜,移动8.5米 的结构化描述。</li>
+</ul>
+</li>
+<li>周围 Top5 威胁序列 (0-20s)筛选机制：<ul>
+<li>基于欧几里得距离，动态筛选距离主玩家最近的 5 名玩家。</li>
+<li>态势分析：<ul>
+<li>敌友识别：通过团队 ID 判定目标属性（敌人&#x2F;队友）。</li>
+<li>距离趋势：对比 $T_0$ 与 $T_{20}$ 的距离变化，判定目标处于“靠近”、“远离”还是“对峙”状态。</li>
+<li>相对方位：利用 atan2 函数结合主玩家 Yaw 角，将坐标差异转化为直观的语义方向（正前方、左侧等）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>整体流程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────────────────────┐</span><br><span class="line">│                          数据预处理 Pipeline                                 │</span><br><span class="line">├─────────────────────────────────────────────────────────────────────────────┤</span><br><span class="line">│                                                                             │</span><br><span class="line">│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │</span><br><span class="line">│  │  原始TXT     │───▶│  解析过滤    │───▶│  时序对齐    │                    │</span><br><span class="line">│  │              |    │  parse_file  │    │  20Hz重采样  │                    │</span><br><span class="line">│  └──────────────┘    └──────────────┘    └──────────────┘                   │</span><br><span class="line">│         │                   │                   │                           │</span><br><span class="line">│         ▼                   ▼                   ▼                           │</span><br><span class="line">│  ┌──────────────────────────────────────────────────────────────┐           │</span><br><span class="line">│  │                    特征工程层                                 │           │</span><br><span class="line">│  │  • 主玩家状态编码 (移动状态/开镜状态/位移量)                    │           │</span><br><span class="line">│  │  • 其他玩家特征 (距离/方向/趋势/敌友)                          │            │</span><br><span class="line">│  │  • 空间关系计算 (相对坐标/朝向差)                              │           │  </span><br><span class="line">│  └──────────────────────────────────────────────────────────────┘           │</span><br><span class="line">│         │                                                                   │</span><br><span class="line">│         ▼                                                                   │</span><br><span class="line">│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │</span><br><span class="line">│  │  双序列构建  │───▶│  文本化模板   │───▶│  JSONL输出   │                   │</span><br><span class="line">│  │  主+Top5     │    │  语义渲染     │    │  messages    │                   │</span><br><span class="line">│  └──────────────┘    └──────────────┘    └──────────────┘                   │</span><br><span class="line">│                                                                             │</span><br><span class="line">└─────────────────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-预测目标（Label）的构建逻辑"><a href="#2-3-预测目标（Label）的构建逻辑" class="headerlink" title="2.3 预测目标（Label）的构建逻辑"></a>2.3 预测目标（Label）的构建逻辑</h3><p>预处理程序通过逻辑模板自动生成 20-25s 的预测话术，作为监督学习的 Ground Truth：</p>
+<ol>
+<li>意图融合：结合主玩家最后 1 秒的动作强度（Delta 位移）与周围最近敌人的状态进行推理。<ul>
+<li>示例：若检测到正在冲刺且前方有敌人，生成“向正前方敌人突进”。</li>
+</ul>
+</li>
+<li>动作补完：根据 class_label（如 Fire, Grenade）自动填充战术动作，如“扣动扳机射击”或“寻找掩体”。</li>
+</ol>
+<h2 id="三、数据语义化设计"><a href="#三、数据语义化设计" class="headerlink" title="三、数据语义化设计"></a>三、数据语义化设计</h2><h3 id="3-1-输入建模：双序列结构"><a href="#3-1-输入建模：双序列结构" class="headerlink" title="3.1 输入建模：双序列结构"></a>3.1 输入建模：双序列结构</h3><p>模型输入不是单一玩家，而是如下所示，因为决策依赖自身状态（移动 &#x2F; 开镜）与外部威胁（敌人距离 &#x2F; 方向 &#x2F; 趋势）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[主玩家 0-20s 行为序列]</span><br><span class="line">[周围 Top5 玩家行为序列]</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-主玩家语义构建"><a href="#3-2-主玩家语义构建" class="headerlink" title="3.2 主玩家语义构建"></a>3.2 主玩家语义构建</h3><p>从连续帧中，每秒抽取一个关键点来提取特征，如移动状态、开镜状态、位移距离等,例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T 0s: 冲刺,关镜</span><br><span class="line">T 1s: 快速移动,关镜,移动11.8米</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-周围玩家建模"><a href="#3-3-周围玩家建模" class="headerlink" title="3.3 周围玩家建模"></a>3.3 周围玩家建模</h3><p>筛选出距离主玩家欧氏距离最近的<strong>5</strong>个玩家，为什么选5个玩家呢？因为摸金模式中一个队伍最多三个人，选5个人能基本覆盖所有的队友和最近的一队满编队敌人。<br>然后进行语义增强，每个玩家增加：敌友关系、相对方向、趋势（靠近 &#x2F; 远离 &#x2F; 对峙）等，构造完成后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">敌人正前方50米靠近:</span><br><span class="line">    T15s: 冲刺,开镜</span><br><span class="line">    T16s: 快速移动,开镜</span><br></pre></td></tr></table></figure>
+<h2 id="四、Qwen微调与Agent优化"><a href="#四、Qwen微调与Agent优化" class="headerlink" title="四、Qwen微调与Agent优化"></a>四、Qwen微调与Agent优化</h2><p>在完成数据语义化（将游戏数值日志转化为自然语言描述）后，如何让大语言模型（LLM）精准理解战术逻辑并预测未来动作？基于性能与算力之间的平衡，我们选择了 Qwen3.5-9B 作为基座，通过 LoRA 这种轻量化微调技术，将通用的语言能力转化为专业的“战场感知”能力。<br>微调的核心目标不是让模型学会“说话”，而是让模型学会在战术语境下进行因果推理。</p>
+<ul>
+<li>因果逻辑学习：通过输入 $T_{0} \sim T_{20s}$ 的主玩家与 Top5 威胁玩家的联合序列，训练模型识别特定的行为模式。例如：“敌人靠近 + 主玩家开镜” $\rightarrow$ “射击”；“血量降低 + 掩体存在” $\rightarrow$ “撤退&#x2F;补给”。</li>
+<li>指令微调 (Instruction Tuning)：将预测任务包装为对话形式，利用 System Prompt 锚定模型专家身份，使其输出符合预期的战术术语，而非发散的文学创作。</li>
+</ul>
+<h3 id="4-1关键微调策略"><a href="#4-1关键微调策略" class="headerlink" title="4.1关键微调策略"></a>4.1关键微调策略</h3><p>A. 参数高效微调：LoRA (Low-Rank Adaptation)由于 Qwen3.5-9B 依然拥有较大的参数量，我们采用 LoRA 方案。</p>
+<ul>
+<li>覆盖全模块：不仅针对 q_proj 和 v_proj，我们还将 LoRA 应用于 gate_proj, up_proj, down_proj 等 MLP 层。这对于 MoE 结构或具有复杂逻辑推理需求的任务至关重要，能更深层地改变模型的决策风格。</li>
+<li>Rank (秩) 的选择：将 $r$ 设为 64。较高的秩有助于捕捉复杂的战术序列特征。</li>
+</ul>
+<p>B. 损失计算优化：屏蔽 Prompt 损失<br>在训练过程中，我们使用了自定义的 tokenize 函数。</p>
+<ul>
+<li>逻辑：模型只需要为“预测的未来 5 秒动作”负责。</li>
+<li>实现：通过计算 User Input 的 Token 长度，将 Label 序列中对应部分置为 -100。在计算 Cross-Entropy Loss 时，模型只会针对 Assistant 回答的部分进行梯度更新。这能防止模型在“背诵”输入序列上浪费容量，提高训练效率。</li>
+</ul>
+<h3 id="Agent增强优化输出"><a href="#Agent增强优化输出" class="headerlink" title="Agent增强优化输出"></a>Agent增强优化输出</h3><p>Qwen3.5-9B 的微调完成后，只能大概率保证模型输出的是基本正确的内容，但是距离更好的答案好事有一定距离，这时候就需要Agent来进行优化，商业模型的能力还是远远大于开源的小模型。<br>通过调用商业模型API，给Agent添加类似下方的skills后，增强LLM输出，最终获得更好的预测结果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;请优化以下预测结果，输出格式仅为一句话，不要包含推理过程和时间步。</span><br><span class="line"></span><br><span class="line">【原始上下文】</span><br><span class="line">&#123;current_context&#125;</span><br><span class="line"></span><br><span class="line">【原始预测内容】</span><br><span class="line">&#123;raw_pred&#125;</span><br><span class="line"></span><br><span class="line">【优化要求】</span><br><span class="line">参考示例中的 assistant 回答风格，直接输出最终的行为预测描述。</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2026/04/14/%E8%85%BE%E8%AE%AFai%E5%AE%89%E5%85%A8/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2026-04-19 23:43:56
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EQwen%E5%BE%AE%E8%B0%83%E4%B8%8EAgent%E4%BC%98%E5%8C%96%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%96%E6%B8%B8%E6%88%8F%E8%A1%8C%E4%B8%BA%E9%A2%84%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-text">基于Qwen微调与Agent优化的文本化游戏行为预测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-text">一、项目概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BB%BB%E5%8A%A1%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 任务定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%A0%B8%E5%BF%83%E9%9A%BE%E7%82%B9"><span class="toc-text">1.2 核心难点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="toc-text">二、数据预处理设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E4%B8%8E%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">2.1 原始数据解析与特征提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8F%8C%E5%BA%8F%E5%88%97%E6%88%98%E6%9C%AF%E8%AF%AD%E4%B9%89%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-text">2.2 双序列战术语义化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%A2%84%E6%B5%8B%E7%9B%AE%E6%A0%87%EF%BC%88Label%EF%BC%89%E7%9A%84%E6%9E%84%E5%BB%BA%E9%80%BB%E8%BE%91"><span class="toc-text">2.3 预测目标（Label）的构建逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E8%AF%AD%E4%B9%89%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-text">三、数据语义化设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%BE%93%E5%85%A5%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%8F%8C%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84"><span class="toc-text">3.1 输入建模：双序列结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%BB%E7%8E%A9%E5%AE%B6%E8%AF%AD%E4%B9%89%E6%9E%84%E5%BB%BA"><span class="toc-text">3.2 主玩家语义构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%91%A8%E5%9B%B4%E7%8E%A9%E5%AE%B6%E5%BB%BA%E6%A8%A1"><span class="toc-text">3.3 周围玩家建模</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Qwen%E5%BE%AE%E8%B0%83%E4%B8%8EAgent%E4%BC%98%E5%8C%96"><span class="toc-text">四、Qwen微调与Agent优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E5%85%B3%E9%94%AE%E5%BE%AE%E8%B0%83%E7%AD%96%E7%95%A5"><span class="toc-text">4.1关键微调策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent%E5%A2%9E%E5%BC%BA%E4%BC%98%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-text">Agent增强优化输出</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8AI%E6%96%B9%E5%90%91 + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2026%2F04%2F19%2F%25E8%2585%25BE%25E8%25AE%25AFai%25E5%25AE%2589%25E5%2585%25A8-%25E5%2586%25B3%25E8%25B5%259B%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2026/04/19/%E8%85%BE%E8%AE%AFai%E5%AE%89%E5%85%A8-%E5%86%B3%E8%B5%9B/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>

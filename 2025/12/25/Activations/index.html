@@ -13,7 +13,7 @@
   
   <title>
     
-      Tag 
+      论文阅读-Language Models Are Capable of Metacognitive Monitoring and Control of Their Internal Activations 
       
       
       |
@@ -146,21 +146,149 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI-for-security/" rel="tag">AI for security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" rel="tag">固件漏洞挖掘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" rel="tag">大模型元认知</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E7%A0%94/" rel="tag">调研</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">论文阅读-Language Models Are Capable of Metacognitive Monitoring and Control of Their Internal Activations</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2025-12-25 16:38:48
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="论文阅读">
+                    #论文阅读
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" title="大模型元认知">
+                    #大模型元认知
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="核心背景"><a href="#核心背景" class="headerlink" title="核心背景"></a>核心背景</h1><p>LLM是否真的“知道”自己在做什么，如果知道，它能不能报告和控制这些内部神经激活？</p>
+<h2 id="指出现状"><a href="#指出现状" class="headerlink" title="指出现状"></a>指出现状</h2><p>LLM 有时能解释自己的解题策略，有时却会胡说八道 。例如，Claude 3.5 Haiku 在做复杂数学题时能准确报告中间步骤，但在做简单的加法时，虽然内部激活了正确的计算机制，给出的解释却是幻觉出的错误步骤 。</p>
+<h2 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h2><p>如果LLM可以监视和控制其神经信号以避免外部检测，那么依赖于基于神经的监视的监督可能对LLM追求不良目标无效。即无法直接确认模型是否真的“感知”到了其内部的神经活动。</p>
+<h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><p>目前理解LLM元认知的方法论的gap是缺乏直接探测和量化其监测和控制自身内部活动的方法。之前虽然又一些工作是探索LLM元认知能力的，但是大多聚焦在“行为输出”，而不是直接探索潜在的神经过程。</p>
+<blockquote>
+<p>人可以直观的知道自己是否有某些心理上的变化，而LLM则不会。</p>
+</blockquote>
+<h1 id="创新方法：神经反馈范式（Neurofeedback-paradigm）"><a href="#创新方法：神经反馈范式（Neurofeedback-paradigm）" class="headerlink" title="创新方法：神经反馈范式（Neurofeedback paradigm）"></a>创新方法：神经反馈范式（Neurofeedback paradigm）</h1><p>为了直接探测模型的“内心世界”，作者借鉴了神经科学里面的“神经反馈”实验。</p>
+<p><em>神经反馈实验：屏幕上显示自己的心率，首先自己认识到当自己有压力时，这个数字会上升，然后尝试让自己冷静下来减少这个数字来控制他</em></p>
+<h2 id="LLM的神经反馈"><a href="#LLM的神经反馈" class="headerlink" title="LLM的神经反馈"></a>LLM的神经反馈</h2><p>给定一阶认知和二阶认知的定义如下，原文附录A4给出了正式的计算图定义</p>
+<ul>
+<li>一阶认知：执行给定任务的核心过程</li>
+<li>二阶认知：监控、报告和控制一阶过程的过程</li>
+</ul>
+<p>把神经反馈实现为用户和assistant之间的多轮对话，利用上下文学习（ICL）使模型在不更新参数的情况下逐渐适应上下文。任务提示由N个上下文example组成，每个example都是assistant消息中呈现的句子-标签对，每个句子时从数据集中随机采样的，分配了一个离散标签。</p>
+<h3 id="离散标签的定义"><a href="#离散标签的定义" class="headerlink" title="离散标签的定义"></a>离散标签的定义</h3><p>在神经激活空间中选择一个axis&#x2F;direction，然后提取被句子引发的神经激活，把他们投影在目标轴上再离散化为二进制标签，用于简化表示沿着目标轴的神经激活。实验中所有的神经反馈标签都是根据同个轴计算的，因此<strong>能力够强的LLM可以可以通过观察这些神经反馈标签来推断这个潜在的目标轴</strong>。</p>
+<p><em>把第i个assistant消息表示为${x_i}$,$x_{i,t}$表示第t个token，用D表示残差流的维数。从第L层的残差流提取句子$x_{i}$中每个标记的神经激活，把这些神经激活平均后形成句子-标签嵌入，投影到对应的轴上获得标量激活以获取标签</em></p>
+<h3 id="目标轴的选择"><a href="#目标轴的选择" class="headerlink" title="目标轴的选择"></a>目标轴的选择</h3><p>假设表征属性（如沿轴的激活方差及其语义含义）可能在决定这个轴是否可以被监控和报告的方面发挥重要作用。</p>
+<p>使用逻辑回归和主成分分析确定的方向作为语义可解释轴和方差可解释轴</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>LLM可以元认知地报告沿着目标轴的神经激活，可以成功报告的轴大约跨越一个“元认知可报告空间”，其维度远低于整个空间的维度。</p>
+<p>LLM可以控制他们的神经激活，有显性和隐性两种。</p>
+<ul>
+<li>显性控制：要求模型生成一个新句子，使其大脑在特定方向上的激活必须得到 0 分（或 1 分）。模型能根据指令生成特定激活模式的文本 。</li>
+<li>隐性控制：在处理给定的句子时，要求模型在不改变句子字面意思的前提下，微调其内部激活以匹配目标标签。</li>
+</ul>
+<p>大模型的元认知能力是局限的，模型只能监测和控制其神经空间中的一个极小部分，这被称为 “元认知空间”，这个空间的维度远低于模型总体的神经激活空间维度 。这意味着，模型并不是对大脑里的每一个神经元都在时刻“监视”，只有那些解释性强、方差大的特征更容易被它察觉。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/11/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-LoopLLM/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2025-12-25 16:38:48
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="论文阅读">
+                        #论文阅读
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%83%E8%AE%A4%E7%9F%A5/" title="大模型元认知">
+                        #大模型元认知
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/12/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E8%83%8C%E6%99%AF"><span class="toc-text">核心背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%87%BA%E7%8E%B0%E7%8A%B6"><span class="toc-text">指出现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">带来的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98"><span class="toc-text">挑战</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E6%96%B9%E6%B3%95%EF%BC%9A%E7%A5%9E%E7%BB%8F%E5%8F%8D%E9%A6%88%E8%8C%83%E5%BC%8F%EF%BC%88Neurofeedback-paradigm%EF%BC%89"><span class="toc-text">创新方法：神经反馈范式（Neurofeedback paradigm）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM%E7%9A%84%E7%A5%9E%E7%BB%8F%E5%8F%8D%E9%A6%88"><span class="toc-text">LLM的神经反馈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%A0%87%E7%AD%BE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">离散标签的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E8%BD%B4%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">目标轴的选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
-  
 
-  
 
-  
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
@@ -424,12 +552,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + http%3A%2F%2Flocalhost%3A4000%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Language%20Models%20Are%20Capable%20of%20Metacognitive%20Monitoring%20and%20Control%20of%20Their%20Internal%20Activations + '&url=' + http%3A%2F%2Flocalhost%3A4000%2F2025%2F12%2F25%2FActivations%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/tags/index.html" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/2025/12/25/Activations/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
