@@ -16,21 +16,11 @@
 .publication-overview > a {
   display: block;
   border: 1px solid #cdd7da;
-  padding: 8px;
+  overflow: hidden;
   background: #fff;
 }
 .publication-overview > a:hover { border-color: var(--gold); }
 .publication-overview img { width: 100%; height: auto; }
-.overview-action {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 6px;
-  padding: 9px 3px 2px;
-  color: var(--body);
-  font-size: 10px;
-}
-.overview-action .icon { width: 13px; height: 13px; }
 .publication-overview figcaption {
   font-size: 10px;
   color: var(--muted);
@@ -56,6 +46,5 @@
   .publication-overview { width: 100%; max-width: 560px; }
 }
 @media print {
-  .overview-action { display: none; }
   .publication[data-with-overview] { grid-template-columns: 230px minmax(0, 1fr); gap: 24px; }
 }
