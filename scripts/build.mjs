@@ -7,6 +7,8 @@ const accepted = publications.filter(p => ['accepted', 'published'].includes(p.s
 for (const paper of accepted) {
   for (const key of ['id','title','authors','venue','year']) if (!paper[key]) throw new Error(`Publication is missing ${key}`);
   if (!Array.isArray(paper.authors) || !paper.authors.length) throw new Error('Publication authors must be a nonempty array');
+  if (paper.equalContribution && (!Array.isArray(paper.equalContribution) || paper.equalContribution.some(name => !paper.authors.includes(name)))) throw new Error('Equal-contribution names must appear in the author list');
+  if (paper.overview && (!paper.overview.thumbnail?.startsWith('assets/publications/') || !paper.overview.full?.startsWith('assets/publications/') || !paper.overview.alt?.zh || !paper.overview.alt?.en || !(paper.overview.width > 0 && paper.overview.height > 0))) throw new Error('Publication overview requires local assets, dimensions, and bilingual alternative text');
   for (const key of ['paper','code','doi']) if (paper[key] && !/^https:\/\//.test(paper[key])) throw new Error(`${key} must be an HTTPS URL`);
 }
 const icons = {
@@ -37,7 +39,21 @@ for (const lang of ['zh', 'en']) {
  const nav = [['research',tr('研究方向','Research')],['publications',tr('学术成果','Publications')],['awards',tr('奖项与荣誉','Recognition')],['experience',tr('教育与经历','Experience')]];
  const prize = n => en ? ({1:'First Prize',2:'Second Prize',3:'Third Prize'})[n] : ({1:'一等奖',2:'二等奖',3:'三等奖'})[n];
  const level = value => value === 'national' ? tr('国家级','National') : tr('省部级','Regional');
- const paperHTML = accepted.length ? `<div class="publication-list">${accepted.map(p => `<article class="publication" id="paper-${esc(p.id)}"><div class="publication-venue"><strong>${esc(p.venue)}</strong><span>${esc(p.year)}</span></div><div><p class="paper-status">${p.status === 'accepted' ? tr('已录用','Accepted') : tr('已发表','Published')}</p><h3>${esc(p.title)}</h3><p class="authors">${p.authors.map(a => /^(Yikuan Wang|王亿宽)$/.test(a) ? `<strong>${esc(a)}</strong>` : esc(a)).join(', ')}${p.equalContribution ? ` <span>(${tr('* 共同第一作者','* Equal contribution')})</span>` : ''}</p>${p.summary ? `<p class="paper-summary">${esc(t(p.summary))}</p>` : ''}<div class="paper-links">${[['paper',tr('论文','Paper')],['doi','DOI'],['code',tr('代码','Code')]].filter(([key])=>p[key]).map(([key,label])=>`<a href="${esc(p[key])}" target="_blank" rel="noopener noreferrer">${label}${icon('arrow')}</a>`).join('')}${p.bibtex ? `<details><summary>BibTeX</summary><pre>${esc(p.bibtex)}</pre><button type="button" class="copy-bibtex">${tr('复制引用','Copy citation')}</button></details>` : ''}</div></div></article>`).join('')}</div>` : `<div class="publication-empty">${icon('book')}<div><h3>${tr('学术成果', 'Publications')}</h3><p>${tr('论文信息将在确认后更新。', 'Publication details will be added once confirmed.')}</p></div><span class="quiet-label">${tr('持续更新', 'Updates to follow')}</span></div>`;
+ const renderPublication = p => {
+  const venue = `<div class="publication-venue"><strong>${esc(p.venue)}</strong><span>${esc(p.year)}</span></div>`;
+  const authors = p.authors.map(name => {
+   const label = /^(Yikuan Wang|王亿宽)$/.test(name) ? `<strong>${esc(name)}</strong>` : esc(name);
+   return label + (p.equalContribution?.includes(name) ? '<sup class="author-marker">*</sup>' : '');
+  }).join(', ');
+  const overview = p.overview ? `<figure class="publication-overview">${venue}<a href="${base}${esc(p.overview.full)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(tr('查看 RIGOR 完整框架图（新窗口）','View the full RIGOR overview (new tab)').replace('RIGOR',p.id.toUpperCase()))}"><img src="${base}${esc(p.overview.thumbnail)}" width="${p.overview.width}" height="${p.overview.height}" alt="${esc(t(p.overview.alt))}" loading="lazy" decoding="async"><span class="overview-action">${tr('查看大图','View full size')}${icon('arrow')}</span></a><figcaption>${esc(p.id.toUpperCase())} · ${tr('方法概览','Framework overview')}</figcaption></figure>` : venue;
+  return `<article class="publication" id="paper-${esc(p.id)}"${p.overview ? ' data-with-overview' : ''}>
+${overview}<div class="publication-content"><p class="paper-status">${p.status === 'accepted' ? tr('已录用','Accepted') : tr('已发表','Published')}${p.presentation ? ` <span aria-hidden="true">·</span> ${esc(p.presentation)}` : ''}</p>
+<h3>${p.paper ? `<a href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">${esc(p.title)}</a>` : esc(p.title)}</h3><p class="authors">${authors}</p>
+${p.equalContribution?.length ? `<p class="contribution-note">* ${tr('共同第一作者','Co-first author')}</p>` : ''}
+${p.summary ? `<p class="paper-summary">${esc(t(p.summary))}</p>` : ''}
+<div class="paper-links">${[['paper',tr('论文 PDF','Paper PDF')],['doi','DOI'],['code',tr('代码','Code')]].filter(([key])=>p[key]).map(([key,label])=>`<a href="${esc(p[key])}" target="_blank" rel="noopener noreferrer">${label}${icon('arrow')}</a>`).join('')}${p.bibtex ? `<details><summary>BibTeX</summary><pre>${esc(p.bibtex)}</pre><button type="button" class="copy-bibtex">${tr('复制引用','Copy citation')}</button></details>` : ''}</div></div></article>`;
+ };
+ const paperHTML = accepted.length ? `<div class="publication-list">${accepted.map(renderPublication).join('')}</div>` : `<div class="publication-empty">${icon('book')}<div><h3>${tr('学术成果', 'Publications')}</h3><p>${tr('论文信息将在确认后更新。', 'Publication details will be added once confirmed.')}</p></div><span class="quiet-label">${tr('持续更新', 'Updates to follow')}</span></div>`;
  const html = `<!doctype html>
 <html lang="${en ? 'en' : 'zh-CN'}">
 <head>
@@ -45,7 +61,7 @@ for (const lang of ['zh', 'en']) {
 <title>${title}</title><meta name="description" content="${description}"><meta name="theme-color" content="#172e46">
 <link rel="canonical" href="https://onewide.github.io/${en ? 'en/' : ''}"><link rel="alternate" hreflang="zh-CN" href="https://onewide.github.io/"><link rel="alternate" hreflang="en" href="https://onewide.github.io/en/"><link rel="alternate" hreflang="x-default" href="https://onewide.github.io/">
 <meta property="og:type" content="profile"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="https://onewide.github.io/${en ? 'en/' : ''}"><meta property="og:image" content="https://onewide.github.io/assets/social-card.png"><meta property="og:locale" content="${en ? 'en_US' : 'zh_CN'}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="${base}assets/favicon.svg"><link rel="stylesheet" href="${base}assets/site.css"><script src="${base}assets/site.js" defer></script>
+<link rel="icon" type="image/svg+xml" href="${base}assets/favicon.svg"><link rel="stylesheet" href="${base}assets/site.css"><link rel="stylesheet" href="${base}assets/publications.css"><script src="${base}assets/site.js" defer></script>
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'Person',name:'Yikuan Wang',alternateName:'王亿宽',url:'https://onewide.github.io/',image:'https://onewide.github.io/assets/portrait.webp',email:profile.email,affiliation:{'@type':'CollegeOrUniversity',name:'Wuhan University'},sameAs:[profile.github],knowsAbout:['Large Language Model Security','Multi-Agent Systems','Multimodal Perception']})}</script>
 </head>
 <body>

@@ -31,9 +31,38 @@ export const profile = {
 
 // Only `accepted` and `published` entries are rendered. Do not add submissions here.
 // Required fields: id, title, authors (array of strings), venue, year, status.
-// Optional: equalContribution, summary {zh,en}, doi, paper, code, bibtex.
+// Optional: equalContribution (names to mark), presentation, summary {zh,en},
+// overview {thumbnail, full, width, height, alt {zh,en}}, doi, paper, code, bibtex.
 // Each link must be a real https URL. No placeholder paper is published.
-export const publications = [];
+export const publications = [
+  {
+    id: 'rigor',
+    title: 'RIGOR: Risk-Gated Topology Adaptation for Robust LLM Multi-Agent Reasoning',
+    authors: ['Fengyuan Ran', 'Yikuan Wang', 'Yanming Li', 'Wenjie Lu', 'Tongtong Wu', 'Senquan Yi', 'Yuheng Wang', 'Qiqi Lin', 'Yuxin Wu', 'Minghui Zhou', 'Naiqiang Tan', 'Li Shen'],
+    venue: 'NeurIPS',
+    year: 2026,
+    status: 'accepted',
+    presentation: 'Poster',
+    // Mark the homepage owner's confirmed co-first authorship.
+    equalContribution: ['Yikuan Wang'],
+    summary: {
+      zh: 'RIGOR 通过运行时风险探测与通信拓扑编辑，识别并隔离随查询变化的不可靠智能体；结合 CVaR 尾部风险训练，提升多智能体推理在误导信息攻击下的鲁棒性。在六个基准、两种骨干模型上验证，并在 Qwen3.5-35B-A3B 上相较最强基线取得平均 21.09% 的准确率提升。',
+      en: 'RIGOR combines runtime risk inference and communication-graph editing with CVaR-guided training to improve multi-agent reasoning under query-varying misleading-message attacks. Evaluated across six benchmarks and two backbones, it achieves an average 21.09% accuracy improvement over the strongest baseline on Qwen3.5-35B-A3B.'
+    },
+    overview: {
+      thumbnail: 'assets/publications/rigor-overview.webp',
+      full: 'assets/publications/rigor-overview-full.webp',
+      width: 1400,
+      height: 826,
+      alt: {
+        zh: 'RIGOR 框架概览：原型引导的先验拓扑构建、基于探测的风险推断、风险门控图编辑与 CVaR 引导的鲁棒优化。',
+        en: 'RIGOR overview: prototype-guided prior topology construction, probe-based risk inference, risk-gated graph editing, and CVaR-guided robust optimization.'
+      }
+    },
+    // Replace this URL when the official proceedings PDF becomes available.
+    paper: 'https://openreview.net/pdf?id=3IhTtHSifz'
+  }
+];
 
 export const awards = [
   { year: 2025, level: 'national', prize: 1, name: { zh: '中国机器人及人工智能大赛', en: 'China Robot and Artificial Intelligence Competition' }, track: { zh: '智能文化创新赛 · 全国总决赛', en: 'Intelligent Cultural Innovation · National Final' }, certificate: 'craic-national-first.webp' },

@@ -33,16 +33,25 @@ GitHub Pages 从 `main` 分支根目录发布。`index.html` 与 `en/index.html`
 | `status` | `accepted` 或 `published` |
 | `summary` | 可选，`{ zh: '中文摘要', en: 'English summary' }` |
 | `paper`, `code`, `doi` | 可选，真实 HTTPS 链接 |
-| `equalContribution` | 可选，共同贡献说明；作者标记请按正式论文填写 |
+| `equalContribution` | 可选，已确认的共同第一作者姓名数组，姓名须与 `authors` 一致；对应姓名显示星号 |
+| `presentation` | 可选，展示形式，如 `Poster` |
+| `overview` | 可选，包含 `thumbnail`、`full`、`width`、`height` 和双语 `alt` 的配图对象，文件放在 `assets/publications/` |
 | `bibtex` | 可选，完整 BibTeX 引用，页面支持展开和复制 |
 
-按年份降序展示；相同年份保留录入顺序。未提供的链接不会显示按钮。**不要把在投工作的标题、摘要或其他保密信息写入这个公开仓库。** 当前简历没有明确标注已录用论文，因此论文列表为空，待本人确认后补充，未将 NeurIPS / EMNLP 在投工作作为录用成果展示。
+按年份降序展示；相同年份保留录入顺序。未提供的链接不会显示按钮。**不要把在投工作的标题、摘要或其他保密信息写入这个公开仓库。**
+
+目前已收录本人确认录用的 **RIGOR（NeurIPS 2026 Poster）**，按提供的顺序展示全部 12 位作者，并标记王亿宽为共同第一作者。配图支持点击查看完整分辨率版本。
+
+### 替换 RIGOR 论文链接
+
+在 `content/profile.mjs` 中找到 `id: 'rigor'`，将 `paper` 字段的 OpenReview PDF URL 替换为正式论文链接，然后执行上方的生成、检查与推送命令。中英文页面的论文标题和 PDF 按钮会一起更新。
 
 ## 证书与素材
 
 - 照片：`assets/portrait.webp`
 - 证书：`assets/certificates/`，为原证书的压缩副本
-- 样式：`assets/site.css`
+- 论文配图：`assets/publications/`，含页面预览和完整分辨率版本
+- 样式：`assets/site.css`，论文图文布局在 `assets/publications.css`
 - 交互：`assets/site.js`
 - 静态生成器：`scripts/build.mjs`
 
