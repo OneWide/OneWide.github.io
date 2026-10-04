@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://onewide.github.io/sitemap.xml
