@@ -5,7 +5,7 @@ import { profile, publications, awards, honors } from '../content/profile.mjs';
 const root = new URL('../', import.meta.url);
 const publicPapers = publications.filter(p => ['accepted', 'published'].includes(p.status));
 assert.equal(new Set(publications.map(p => p.id)).size, publications.length, 'Publication IDs must be unique');
-assert.equal(awards.filter(a => a.level === 'national').length, 3);
+assert(awards.every(a => ['national', 'regional'].includes(a.level)), 'Every award has a supported level');
 for(const lang of ['zh','en']) {
  const pageURL = new URL(lang === 'en' ? 'en/index.html' : 'index.html', root);
  const html = await readFile(pageURL, 'utf8');
