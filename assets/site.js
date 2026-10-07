@@ -1,4 +1,19 @@
 const en = document.documentElement.lang === 'en';
+const themeToggle = document.querySelector('.theme-toggle');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+function syncThemeButton() {
+ const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : systemTheme.matches;
+ themeToggle.setAttribute('aria-pressed', String(dark));
+ themeToggle.setAttribute('aria-label', en ? `Switch to ${dark ? 'light' : 'dark'} theme` : `切换${dark ? '浅色' : '深色'}主题`);
+}
+syncThemeButton();
+systemTheme.addEventListener('change', syncThemeButton);
+themeToggle.addEventListener('click', () => {
+ const theme = themeToggle.getAttribute('aria-pressed') === 'true' ? 'light' : 'dark';
+ document.documentElement.dataset.theme = theme;
+ try { localStorage.setItem('theme', theme); } catch {}
+ syncThemeButton();
+});
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 function closeMenu() { menu.setAttribute('aria-expanded', 'false'); navigation.classList.remove('is-open'); }

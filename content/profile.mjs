@@ -1,4 +1,9 @@
 // Edit content here, then run `npm run build`. Both languages are generated together.
+export const site = {
+  title: 'Yikuan Wang - 主页',
+  updated: '2026-10-07'
+};
+
 export const profile = {
   name: { zh: '王亿宽', en: 'Yikuan Wang' },
   email: 'wyk_wide@whu.edu.cn',
@@ -52,8 +57,8 @@ export const publications = [
     overview: {
       thumbnail: 'assets/publications/rigor-overview.webp',
       full: 'assets/publications/rigor-overview-full.webp',
-      width: 1400,
-      height: 826,
+      width: 1200,
+      height: 708,
       alt: {
         zh: 'RIGOR 框架概览：原型引导的先验拓扑构建、基于探测的风险推断、风险门控图编辑与 CVaR 引导的鲁棒优化。',
         en: 'RIGOR overview: prototype-guided prior topology construction, probe-based risk inference, risk-gated graph editing, and CVaR-guided robust optimization.'

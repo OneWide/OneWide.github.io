@@ -1,14 +1,18 @@
 import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
-import { profile, publications, awards, honors } from '../content/profile.mjs';
+import { site, profile, publications, awards, honors } from '../content/profile.mjs';
 
 const root = new URL('../', import.meta.url);
 const publicPapers = publications.filter(p => ['accepted', 'published'].includes(p.status));
 assert.equal(new Set(publications.map(p => p.id)).size, publications.length, 'Publication IDs must be unique');
 assert(awards.every(a => ['national', 'regional'].includes(a.level)), 'Every award has a supported level');
-for(const lang of ['zh','en']) {
- const pageURL = new URL(lang === 'en' ? 'en/index.html' : 'index.html', root);
+for(const [route, lang] of [['index.html', 'en'], ['zh/index.html', 'zh-CN'], ['en/index.html', 'en']]) {
+ const pageURL = new URL(route, root);
  const html = await readFile(pageURL, 'utf8');
+ assert(html.includes(`<html lang="${lang}">`));
+ assert(html.includes(`<title>${site.title}</title>`));
+ assert(!html.includes('assets/favicon.svg'));
+ assert(!html.includes('overview-action'));
  assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one primary heading');
  assert.equal((html.match(/class="publication"/g) || []).length, publicPapers.length);
  assert.equal((html.match(/class="award-row"/g) || []).length, awards.length);

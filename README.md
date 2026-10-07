@@ -1,9 +1,12 @@
 # 王亿宽 · 学术主页
 
-- 中文：<https://onewide.github.io/>
-- English: <https://onewide.github.io/en/>
+- English（默认）：<https://onewide.github.io/>
+- 中文：<https://onewide.github.io/zh/>
+- 原英文地址 <https://onewide.github.io/en/> 继续可用，规范地址指向根首页。
 
-独立制作的双语静态学术主页。包含研究方向、学术成果、竞赛奖项、荣誉、教育和学生工作经历，适配手机与桌面，支持奖项筛选、证书查看和邮箱复制。
+双语静态学术主页，采用无侧边栏的紧凑布局、圆角卡片和深绿强调色。包含研究方向、学术成果、竞赛奖项、荣誉、教育和学生工作经历，支持手机浏览、明暗主题切换、奖项筛选、证书查看和邮箱复制。
+
+完整的中文维护教程见 [学术主页修改指南](学术主页修改指南.md)，包含内容修改、论文与图片示例、本地预览和发布步骤。
 
 ## 修改内容
 
@@ -12,12 +15,14 @@
 ```sh
 npm run build
 npm run check
-git add content scripts assets index.html en/index.html
+git add content scripts assets index.html zh/index.html en/index.html
 git commit -m "Update academic profile"
 git push origin main
 ```
 
-GitHub Pages 从 `main` 分支根目录发布。`index.html` 与 `en/index.html` 为已生成页面，修改数据后需要重新生成并一起提交。`.nojekyll` 保证静态资源直接发布。
+GitHub Pages 从 `main` 分支根目录发布。`index.html` 为默认英文首页，`zh/index.html` 为中文页面，`en/index.html` 为兼容的英文页面。修改数据后需要重新生成并一起提交。`.nojekyll` 保证静态资源直接发布。
+
+标题和更新日期在 `content/profile.mjs` 的 `site` 对象中。当前两种语言的标题均为 `Yikuan Wang - 主页`。主题默认跟随系统，手动切换后保存在浏览器本地。
 
 ## 添加论文
 
@@ -38,7 +43,7 @@ GitHub Pages 从 `main` 分支根目录发布。`index.html` 与 `en/index.html`
 | `overview` | 可选，包含 `thumbnail`、`full`、`width`、`height` 和双语 `alt` 的配图对象，文件放在 `assets/publications/` |
 | `bibtex` | 可选，完整 BibTeX 引用，页面支持展开和复制 |
 
-按年份降序展示；相同年份保留录入顺序。未提供的链接不会显示按钮。**不要把在投工作的标题、摘要或其他保密信息写入这个公开仓库。**
+按年份分组、降序展示；相同年份保留录入顺序。未提供的链接不会显示按钮。**不要把在投工作的标题、摘要或其他保密信息写入这个公开仓库。**
 
 目前已收录本人确认录用的 **RIGOR（NeurIPS 2026 Poster）**，按提供的顺序展示全部 12 位作者，并标记王亿宽为共同第一作者。配图支持点击查看完整分辨率版本。
 
@@ -49,6 +54,7 @@ GitHub Pages 从 `main` 分支根目录发布。`index.html` 与 `en/index.html`
 ## 证书与素材
 
 - 照片：`assets/portrait.webp`
+- 网站图标：`assets/favicon.ico`、`assets/favicon-32.png`、`assets/apple-touch-icon.png`；顶部小图标为 `assets/site-icon.webp`，均由用户提供的 JPG 制作
 - 证书：`assets/certificates/`，为原证书的压缩副本
 - 论文配图：`assets/publications/`，含页面预览和完整分辨率版本
 - 样式：`assets/site.css`，论文图文布局在 `assets/publications.css`
